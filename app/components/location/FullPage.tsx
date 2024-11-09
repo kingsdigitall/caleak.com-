@@ -1,0 +1,88 @@
+"use client";
+import React from "react";
+import Link from "next/link";
+import data1 from "@/components/Content/subDomainUrlContent.json";
+import ContactInfo from "@/components/Content/ContactInfo.json";
+
+const Page = () => {
+  // const [host, setHost] = useState<string | null>(null);
+  // useEffect(() => {
+  //   if (typeof window !== "undefined") {
+  //     const fullHost = window.location.host;
+  //     const mainDomain = fullHost.replace(/^[^.]+\./, "");
+  //     setHost(mainDomain);
+  //     // console.log("host:", fullHost);
+  //   }
+  // }, []);
+
+  const data: any = data1;
+  // console.log(Object.keys(data).sort());
+  // const groupedByState = Object.keys(data).reduce(
+  //   (acc, key) => {
+  //     const component = data[key];
+  //     const stateAbbreviation = key.split("-").pop();
+
+  //     if (component.value === "state" && stateAbbreviation) {
+  //       acc[stateAbbreviation] = {
+  //         stateComponent: { name: component.name, slug: component.slug },
+  //         cities: [],
+  //       };
+  //     } else if (stateAbbreviation && acc[stateAbbreviation]) {
+  //       acc[stateAbbreviation].cities.push({
+  //         name: component.name,
+  //         slug: component.slug,
+  //       });
+  //     }
+
+  //     return acc;
+  //   },
+  //   {} as Record<
+  //     string,
+  //     {
+  //       stateComponent: { name: string; slug: string };
+  //       cities: { name: string; slug: string }[];
+  //     }
+  //   >,
+  // );
+  // const slugs = groupedByState.ca.cities.map(city => city.slug);
+  // console.log(slugs);
+  return (
+    <div className="">
+      <div>
+        <div className="mx-10 mt-10 flex h-fit w-auto flex-wrap gap-4 divide-x-2 divide-minor px-4">
+          {Object.keys(data)
+            .sort()
+            .map((City: any, index: number) => {
+              return (
+                <div className="" key={index}>
+                  <Link
+                    href={`http://${data[City].slug}.${ContactInfo.host}`}
+                    className="scale-100 pl-4 duration-300 ease-in-out hover:font-semibold hover:text-main"
+                  >
+                    {data[City].name}
+                  </Link>
+                </div>
+              );
+            })}
+        </div>
+        {/* <div className="flex-wrap flex p-10">
+        {Object.keys(data)
+            .sort()
+            .map((City: any, index: number) => {
+              return (
+                <div className=" mx-2 " key={index}>
+                
+                    '{`http://${data[City].slug}.${ContactInfo.host}`}',
+                    {data[City].slug},
+                </div>
+              );
+            })}
+      </div> */}
+        </div>
+        
+      {/* <div className="flex flex-wrap px-2">{slugs.map((item: any) => <div className="px-4" key={item}>'{item}',</div>)}</div> */}
+    </div>
+  );
+};
+
+export default Page;

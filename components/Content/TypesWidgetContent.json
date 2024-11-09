@@ -1,0 +1,92 @@
+{
+      "title": "Types of Furnace Repairs We Offer",
+      "p": "Our expertise covers a broad range of furnace types and components, allowing us to handle virtually any furnace issue. Here’s what we service:",
+      "lists":[
+            {
+              "title": "Gas Furnaces",
+              "imageUrl": "Gas Furnace.jpg",
+              "description": "Efficient and economical, gas furnaces are common but require specialized care to ensure safety and optimal performance."
+            },
+            {
+              "title": "Electric Furnaces",
+              "imageUrl": "electric furnace.jpeg",
+              "description": "Known for their durability, electric furnaces are a reliable choice. Our team handles all necessary repairs to keep them functioning well."
+            },
+            {
+              "title": "Forced Air Furnaces",
+              "imageUrl": "Forced Air Furnaces.png",
+              "description": "Forced air systems distribute heat throughout your home. We repair any component affecting airflow, from fans to ducts."
+            },
+            {
+              "title": "Split System Furnaces",
+              "imageUrl": "Split System Furnaces.jpg",
+              "description": "For homes with both heating and cooling needs, we service and repair split systems, ensuring balanced comfort all year."
+            },
+            {
+              "title": "Single-Stage & Two-Stage Furnaces",
+              "imageUrl": "Single-Stage & Two-Stage Furnaces.jpeg",
+              "description": "These systems offer varying levels of heat output. Our repair services cater to both types, maximizing efficiency and lifespan."
+            },
+            {
+              "title": "Two-Stage Variable Furnaces",
+              "imageUrl": "Two-Stage Variable Furnaces.jpeg",
+              "description": "Advanced variable systems require precision repairs to maintain efficiency and consistent heating."
+            },
+            {
+              "title": "Central Heating",
+              "imageUrl": "Central Heating.jpeg",
+              "description": "We cover all aspects of central heating, from ductwork to thermostat controls, ensuring your entire system is in sync."
+            },
+            {
+              "title": "Thermostats",
+              "imageUrl": "Thermostats.jpeg",
+              "description": "A malfunctioning thermostat can lead to inefficiencies. Our team ensures your thermostat works accurately with your system."
+            },
+            {
+              "title": "Heat Pumps (Including Packaged Heat Pumps)",
+              "imageUrl": "heat pump.jpeg",
+              "description": "We specialize in repairing both traditional and packaged heat pumps for efficient temperature control."
+            },
+            {
+              "title": "Air Handlers",
+              "imageUrl": "Air Handler.jpg",
+              "description": "Essential for air distribution, air handlers are part of a well-functioning furnace system. Our team tackles repairs to prevent airflow issues."
+            },
+            {
+              "title": "Ducts",
+              "imageUrl": "duct.jpg",
+              "description": "We fix leaks and improve insulation in ductwork to enhance airflow and maintain energy efficiency."
+            },
+            {
+              "title": "Air Filters",
+              "imageUrl": "air-conditioner-filter.jpg",
+              "description": "Clogged filters can reduce airflow and efficiency. We replace or clean filters to keep your furnace working effectively."
+            },
+            {
+              "title": "Burners & Burner Chambers",
+              "imageUrl": "Burner Chambers.jpg",
+              "description": "For gas furnaces, we repair burners and ensure burner chambers are clean and safe."
+            },
+            {
+              "title": "Heat Exchangers",
+              "imageUrl": "heat exchanger.jpeg",
+              "description": "Heat exchangers play a crucial role in furnace efficiency. Our team repairs and replaces these to maximize your furnace’s lifespan."
+            },
+            {
+              "title": "Vent Pipes",
+              "imageUrl": "Vent pipes.jpg",
+              "description": "Proper ventilation is vital. We ensure vent pipes are clear and functional, preventing dangerous backflow of gases."
+            },
+            {
+              "title": "Refrigerant & Evaporator Coils",
+              "imageUrl": "evaporator.jpg",
+              "description": "We repair refrigerant issues and service evaporator coils, essential for split and heat pump systems."
+            },
+            {
+              "title": "Condensing Units",
+              "imageUrl": "Condensing Units.jpeg",
+              "description": "For high-efficiency furnaces, we repair condensing units to maintain performance and reduce utility costs."
+            }
+          ]
+}
+
