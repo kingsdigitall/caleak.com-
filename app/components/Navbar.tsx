@@ -6,7 +6,6 @@ import { FaPhoneVolume } from "react-icons/fa";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import ContactInfo from "@/components/Content/ContactInfo.json";
 
-
 const Navbar = () => {
   const [nav, setNav] = useState(false);
   const handleNav = () => {
@@ -14,14 +13,14 @@ const Navbar = () => {
   };
   return (
     <>
-      <nav className=" sticky   top-0 z-[999] flex h-[5rem]  w-screen items-center justify-center border-y-2 bg-white md:w-full px-4 md:px-0">
+      <nav className=" sticky   top-0 z-[999] flex h-[5rem]  w-screen items-center justify-center border-y-2 bg-white px-4 md:w-full md:px-0">
         <div className=" relative w-screen md:w-full md:max-w-[1280px] md:px-10  md:py-4">
-          <div className="mt-0 flex flex-row justify-between space-x-8 rounded-2xl rounded-tr-none text-sm font-medium md:mr-6 md:justify-around px-4">
+          <div className="mt-0 flex flex-row justify-between space-x-8 rounded-2xl rounded-tr-none px-4 text-sm font-medium md:mr-6 md:justify-around">
             <div className="flex ">
               <Link href={ContactInfo?.baseUrl} aria-label="Home">
                 <Image
                   src="/logo.png"
-                  className=" md:mr-3 w-56 md:w-32 h-full object-cover "
+                  className=" h-full w-40 object-contain md:mr-3 md:w-56 "
                   alt="logo of the company"
                   title=""
                   loading="lazy"
@@ -37,8 +36,8 @@ const Navbar = () => {
                     <Link
                       href={
                         item.toLowerCase() === "home"
-                          ? `${ContactInfo?.baseUrl}`
-                          : `${ContactInfo?.baseUrl}${item.toLowerCase().split(" ").join("-")}`
+                          ? `/`
+                          : `/${item.toLowerCase().split(" ").join("-")}`
                       }
                       className="under  text-black decoration-minor decoration-2  duration-150 ease-in-out hover:underline "
                       aria-current="page"
@@ -50,8 +49,11 @@ const Navbar = () => {
               )}
             </ul>
             <div className="  hidden items-center justify-center lg:flex   ">
-              <a href={`tel:${ContactInfo.tel}`}>
-                <button className="flex items-center justify-center rounded bg-main px-2 py-2 text-sm font-bold text-white   duration-200 ease-in-out hover:border-2 hover:border-main hover:bg-white hover:text-black md:px-4">
+              <a id="cta-id" href={`tel:${ContactInfo.tel}`}>
+                <button
+                  id="cta-id"
+                  className="flex items-center justify-center rounded bg-main px-2 py-2 text-sm font-bold text-white   duration-200 ease-in-out hover:border-2 hover:border-main hover:bg-white hover:text-black md:px-4"
+                >
                   <FaPhoneVolume className="text-3xl " />
                   {ContactInfo.No}
                 </button>
@@ -60,7 +62,11 @@ const Navbar = () => {
           </div>
         </div>
         <div className="relative z-10 sm:hidden " onClick={handleNav}>
-          {nav ? <AiOutlineClose size={25} className="text-white"/> : <AiOutlineMenu size={25} />}
+          {nav ? (
+            <AiOutlineClose size={25} className="text-white" />
+          ) : (
+            <AiOutlineMenu size={25} />
+          )}
         </div>
         <div
           className={
@@ -87,26 +93,28 @@ const Navbar = () => {
               </li>
             ))}
           </ul> */}
-          <div className=" h-full w-full font-medium p-6 flex flex-col justify-around py-10">
+          <div className=" flex h-full w-full flex-col justify-around p-6 py-10 font-medium">
             <div className="">
               {/* <div className="text-xl font-bold ">Menu</div> */}
-              <ul className="relative text-4xl mt-5 font-semibold flex flex-col gap-6 ">
-              {["Home", "Locations","Services", "About", "Contact"].map((item) => (
-              <li key={item}>
-                <Link
-                onClick={handleNav}
-                href={
-                  item.toLowerCase() === "home"
-                    ? `${ContactInfo?.baseUrl}`
-                    : `${ContactInfo?.baseUrl}${item.toLowerCase().split(" ").join("-")}`
-                }
-                  className="under text-white font-semibold decoration-main decoration-2  duration-150 ease-in-out hover:underline "
-                  aria-current="page"
-                >
-                  {item}
-                </Link>
-              </li>
-            ))}
+              <ul className="relative mt-5 flex flex-col gap-6 text-4xl font-semibold ">
+                {["Home", "Locations", "Services", "About", "Contact"].map(
+                  (item) => (
+                    <li key={item}>
+                      <Link
+                        onClick={handleNav}
+                        href={
+                          item.toLowerCase() === "home"
+                            ? `/`
+                            : `/${item.toLowerCase().split(" ").join("-")}`
+                        }
+                        className="under font-semibold text-white decoration-main decoration-2  duration-150 ease-in-out hover:underline "
+                        aria-current="page"
+                      >
+                        {item}
+                      </Link>
+                    </li>
+                  ),
+                )}
               </ul>
             </div>
           </div>

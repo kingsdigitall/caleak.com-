@@ -8,15 +8,7 @@ import contentData from "@/components/Content/contact.json";
 import ContactInfo from '@/components/Content/ContactInfo.json';
 import Banner from "../Home/Banner";
 
-export const metadata: Metadata = {
-  title: {
-    absolute: contentData.metaTitle,
-  },
-  description: contentData.metaDescription,
-  alternates: {
-    canonical: contentData.metaCanonical,
-  },
-};
+
 
 const Page = () => {
 
@@ -28,7 +20,7 @@ const Page = () => {
           h1={contentData.h1Banner}
           image={contentData.bannerImage}
           header={contentData?.bannerQuote}
-          p1={contentData.p1Banner}
+          p1={contentData.metaDescription}
         />
         {/* Poster */}
 
@@ -53,8 +45,8 @@ const Page = () => {
                   className="mt-4 text-justify"
                   dangerouslySetInnerHTML={{ __html: contentData.p2 }}
                 ></p>
-                <Link href={`tel:${ContactInfo.tel}`}>
-                  <button
+                <Link id='cta-id' href={`tel:${ContactInfo.tel}`}>
+                  <button id='cta-id'
                     className="bg-main hover:bg-minor text-white font-bold p-4 rounded-3xl mt-10 text-xl flex justify-center border items-center"
                   >
                     <FaPhoneVolume className="text-3xl mr-2" />
@@ -73,8 +65,8 @@ const Page = () => {
             Let&apos;s Start a Conversation
           </div>
           <div className="text-center border-double">
-            <a href={`tel:${ContactInfo.tel}`}>
-              <button
+            <a id='cta-id' href={`tel:${ContactInfo.tel}`}>
+              <button id='cta-id'
                 className="bg-main hover:bg-minor shadow-lg rounded-lg py-3 px-4 tracking-wide mt-3 text-white font-bold"
               >
                 {ContactInfo.No}
@@ -117,8 +109,8 @@ const Page = () => {
             height={200}
             className="group-hover:-translate-y-4 ease-in duration-300"
           />
-          <Link href={`tel:${ContactInfo.tel}`} className="w-full grid place-items-center">
-            <p
+          <Link id='cta-id' href={`tel:${ContactInfo.tel}`} className="w-full grid place-items-center">
+            <p id='cta-id'
               className="bg-white w-[90%] text-2xl font-semibold text-center rounded-lg m-h-64 p-2 ring ring-main transform hover:shadow-minor group-hover:translate-y-4 hover:shadow-xl transition ease-in duration-300"
               dangerouslySetInnerHTML={{ __html: contentData.ctaText }}
             ></p>

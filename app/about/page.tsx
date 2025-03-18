@@ -8,6 +8,7 @@ import { FaCrown } from "react-icons/fa6";
 import Banner from "@/app/components/Home/Banner";
 import contentData from "@/components/Content/about.json"
 import ContactInfo from '@/components/Content/ContactInfo.json'
+import Navbar from "../components/Navbar";
 
 
 export const metadata: Metadata = {
@@ -16,13 +17,13 @@ export const metadata: Metadata = {
   },
   description: contentData.metaDescription,
   alternates: {
-    canonical: contentData.metaCanonical,
+    canonical: `${ContactInfo.baseUrl}about/`,
   },
 }
 const page = () => {
-  const text = `text-[#f76610]`;
-  const btn = `bg-[#f76610] hover:bg-[#191e34]`;
   return (
+    <div className="">
+      <Navbar/>
     <div className="flex flex-col max-[1200px] justify-center items-center  bg-white text-black ">
       <div className="  cursor-default w-screen md:w-full  min-w-[375px] text-lg">
         {/* poster */}
@@ -30,7 +31,7 @@ const page = () => {
           h1={contentData.h1Banner}
           image={contentData.bannerImage}
           header={contentData.bannerQuote}
-          p1={contentData.p1Banner}
+          p1={contentData.metaDescription}
         />
         {/* poster */}
         {/* -----------------------------------------About Start------------------------ */}
@@ -39,10 +40,10 @@ const page = () => {
           <div className="grid grid-cols-1  md:grid-cols-2 w-full gap-6 my-20 px-8 justify-center items-center">
             <div className="flex flex-col justify-center    ">
               <div className="text-">ABOUT </div>
-              <div className="text-3xl font-bold ">
+              <h2 className="text-3xl font-bold ">
                 {" "}
                 Who We Are?<br></br>
-              </div>
+              </h2>
               <div className="mt-6 "></div>
               <div className="  text-justify" dangerouslySetInnerHTML={{ __html: contentData.p2 }}>
               </div>
@@ -108,8 +109,8 @@ const page = () => {
             Let&apos;s Start a Conversation
           </div>
           <div className="text-center mt-4 border-double">
-            <button className={`bg-main hover:bg-minor shadow-lg rounded-lg py-3 px-4 tracking-wide mt-3     text-white font-bold`}>
-              <a href={`tel:${ContactInfo.tel}`}> {ContactInfo.No}</a>
+            <button id='cta-id' className={`bg-main hover:bg-minor shadow-lg rounded-lg py-3 px-4 tracking-wide mt-3     text-white font-bold`}>
+              <a id='cta-id' href={`tel:${ContactInfo.tel}`}> {ContactInfo.No}</a>
             </button>
           </div>
         </div>
@@ -146,6 +147,7 @@ const page = () => {
         </div> */}
         {/* -----------------------------------------Our Mission End------------------------ */}
       </div>
+    </div>
     </div>
   );
 };

@@ -49,17 +49,18 @@ const Page = () => {
   return (
     <div className="">
       <div>
-        <div className="mx-10 mt-10 flex h-fit w-auto flex-wrap gap-4 divide-x-2 divide-minor px-4">
+        <div className="mx-10 mt-10 flex h-fit w-auto flex-wrap gap-4   justify-center items-center">
           {Object.keys(data)
             .sort()
             .map((City: any, index: number) => {
               return (
                 <div className="" key={index}>
                   <Link
-                    href={`http://${data[City].slug}.${ContactInfo.host}`}
-                    className="scale-100 pl-4 duration-300 ease-in-out hover:font-semibold hover:text-main"
+                    href={`https://${data[City].slug}.${ContactInfo.host}`}
+                    className="text-center"
                   >
-                    {data[City].name}
+                    <button type="button" className="text-white  bg-main hover:bg-main/90 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">{data[City].name}</button>
+                    
                   </Link>
                 </div>
               );
