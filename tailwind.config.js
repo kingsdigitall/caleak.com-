@@ -18,8 +18,8 @@ module.exports = {
     },
     extend: {
       colors: {
-        'minor': '#ff5c28',
-        'main': '#273f2d',
+        'minor': '#9163f2',
+        'main': '#724ebf',
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

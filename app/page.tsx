@@ -1,5 +1,7 @@
 import Hero from './components/Home/Hero'
 import homeData from "@/components/Content/home.json"
+import ContactInfo from "@/components/Content/ContactInfo.json";
+
 
 export async function generateMetadata(
 ) {
@@ -8,7 +10,7 @@ export async function generateMetadata(
     title: homeData.metaTitle,
   description:homeData.metaDescription,
   alternates: {
-    canonical: homeData.metaCanonical,
+    canonical: `https://${ContactInfo.host}`,
   }
     
   }

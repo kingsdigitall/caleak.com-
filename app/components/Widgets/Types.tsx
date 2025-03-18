@@ -1,16 +1,16 @@
 import Image from "next/image";
 import React from "react";
-import data from "@/components/Content/TypesWidgetContent.json";
+import data from "@/components/Content/serviceWidgetContent.json";
 
 const Types = () => {
   return (
     <div className="mt-16 px-4 md:px-24">
-      <h2 className="text-center text-2xl font-extrabold text-main">
+      <h2 className="text-center text-3xl font-extrabold text-main">
         {data.title}
       </h2>
       <p className="mt-4 text-center text-lg">{data.p}</p>
 
-      <div className=" my-16 hidden  grid-cols-1 content-center  justify-center gap-10 sm:grid-cols-1 lg:grid lg:grid-cols-3 ">
+      <div className=" my-16 hidden  grid-cols-1 content-center  justify-center gap-10 sm:grid-cols-2 lg:grid lg:grid-cols-4 ">
         {data.lists?.map((items: any, index: number) => (
           <div key={index} className=" flex items-center justify-center">
             <div className="group h-80 w-80 [perspective:1000px] ">
@@ -64,9 +64,9 @@ const Types = () => {
                   className="h-14 w-14 object-cover "
                 />
               </div>
-              <h2 className="w-[75%]  text-lg font-bold text-main">
+              <h3 className="w-[75%]  text-lg font-bold text-main">
                 {item.title}{" "}
-              </h2>
+              </h3>
             </div>
           </div>
         ))}

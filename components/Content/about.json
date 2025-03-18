@@ -1,32 +1,29 @@
 {
-  "metaTitle": "About Us | Trusted Furnace Experts in California",
-  "metaDescription": "Learn about Paramount Plumber, your go-to experts for furnace repair and installation. Family-owned, trusted, and committed to keeping California homes comfortable year-round.",
-  "metaCanonical": "http://paramount-plumber.com/about",
-  "bannerQuote": "Why We’re Different: Get to  ",
+  "metaTitle": "Leak Detection Experts in California | California Leak Detection Specialists",
+  "metaDescription": "Need expert leak detection in California? We specialize in pinpointing leaks with advanced acoustic sensors and pressure testing. Call now for a fast inspection!",
+  "bannerQuote": "",
   "bannerImage": "banner.jpg",
-  "h1Banner": "Know About Us",
+  "h1Banner": "About California Leak Detection Specialists",
   "p1Banner": "",
-  "p2":"At Paramount Plumber, we’re more than just a furnace service provider—we’re a family-owned business dedicated to making every home in California as comfortable and energy-efficient as possible. Our foundation is built on values of trust, expertise, and a genuine commitment to customer care, qualities that have allowed us to become a reliable name in furnace services across the state.",
-  "h2Image":"medium home.jpeg",
-  "missionSection":[
+  "p2": "At California Leak Detection Specialists, we take pride in being the trusted name for precise, non-invasive leak detection across California. As a family-owned business with years of industry experience, we specialize in using advanced technology to locate and repair leaks before they cause costly damage.<br/><br/>Our expert team is trained in acoustic sensors, infrared imaging, and pressure testing, allowing us to pinpoint leaks in water lines, gas pipes, and sewer systems with unmatched accuracy. Whether it's a hidden slab leak, an underground water leak, or a plumbing system inspection, we ensure every job is handled with professionalism, efficiency, and transparency.<br/><br/>We understand that a leak can be stressful, which is why we offer fast response times, detailed diagnostics, and upfront pricing with no hidden costs. Our commitment to customer satisfaction and high-quality leak detection solutions has made us a go-to choice for homeowners and businesses across California.",
+  "h2Image": "an-cuts-a-plastic-pvc-pipe-with-special-scissors.jpg",
+  "missionSection": [
     {
       "title": "Our Mission",
-    "description": "Our mission is simple: to bring warmth, comfort, and peace of mind to every home we serve. We aim to exceed expectations with every service call, from quick fixes to comprehensive installations, ensuring each client feels confident and satisfied with the care their furnace system receives. At Paramount Plumber, we believe everyone deserves a home that feels safe and welcoming, and we’re here to make that happen with top-notch workmanship and a customer-first approach."
+      "description": "Our mission is to provide accurate, non-invasive leak detection using the latest technology while minimizing disruption to your property. We are dedicated to protecting homes and businesses from hidden water damage, saving our customers time and money with efficient, proactive solutions."
     },
     {
-      "title": "Our Commitment",
-    "description": "We’re committed to quality in everything we do. Each member of our team is a trained, certified technician who brings skill and attention to detail to every job. We understand that furnace issues can disrupt your day, so we provide fast, reliable service with a focus on safety and efficiency. Our commitment doesn’t end when the job is done—whether it’s offering advice on system maintenance or recommending upgrades to improve energy savings, we are here to support you long-term."
+      "title": "Our Vision",
+      "description": "We strive to be California’s most trusted leak detection service, setting industry standards through innovation, expertise, and exceptional customer service. Our goal is to ensure that every household and business has access to fast, accurate, and affordable leak detection."
     },
     {
-      "title": "Our Promise to You",
-    "description": "When you choose Paramount Plumber, you’re choosing more than a service; you’re choosing a partner in home comfort. We promise transparency, fair pricing, and friendly service that makes you feel like part of our extended family. With our 100% satisfaction guarantee, we’re confident you’ll see why so many Californians trust us to keep their homes cozy, safe, and efficient."
+      "title": "Our Expertise",
+      "description": "With years of hands-on experience, our team specializes in pinpoint leak detection using acoustic sensors, infrared imaging, and pressure testing. We detect and diagnose water leaks, gas leaks, slab leaks, and sewer issues with precision."
     }
   ],
-  "areaweserveSection":{
-    "description": "",
-    "linkText":"Check our furnace service locations here.",
-    "link":"/locations"
+  "areaweserveSection": {
+    "description": "We serve all across the Meridian",
+    "linkText": "Check our Leak Detection service locations here.",
+    "link": "/locations"
   }
-
-  
 }

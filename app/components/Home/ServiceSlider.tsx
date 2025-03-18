@@ -53,7 +53,7 @@ const ServiceSlider = () => {
   };
   return (
     <div className="py-5 px-4  relative">
-      {data.map((item: any) => (
+      {data.lists.map((item: any) => (
             <div className=" rounded-2xl border   p-3 shadow-xl" key={item?.title}>
               <div className="flex items-center justify-start gap-4">
                 <div className="w-14 h-14 object-cover overflow-hidden rounded-full">
