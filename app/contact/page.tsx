@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   },
   description: contentData.metaDescription,
   alternates: {
-     canonical: `${ContactInfo.baseUrl}contact/`,
+     canonical: `${ContactInfo.baseUrl}contact`,
   },
 };
 
