@@ -20,7 +20,7 @@ const Page = () => {
           h1={contentData.h1Banner}
           image={contentData.bannerImage}
           header={contentData?.bannerQuote}
-          p1={contentData.metaDescription}
+          p1="Need expert leak detection in California? Contact us today for quick, non-invasive leak detection services using advanced technology. Call Us At (213) 905-4906."
         />
         {/* Poster */}
 

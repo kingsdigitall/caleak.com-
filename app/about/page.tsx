@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   title: {
     absolute: contentData.metaTitle,
   },
-  description: contentData.metaDescription,
+  description: "Need expert leak detection in California? We specialize in pinpointing leaks with advanced acoustic sensors and pressure testing. Call Us At (213) 905-4906.",
   alternates: {
     canonical: `${ContactInfo.baseUrl}about`,
   },
@@ -31,7 +31,7 @@ const page = () => {
           h1={contentData.h1Banner}
           image={contentData.bannerImage}
           header={contentData.bannerQuote}
-          p1={contentData.metaDescription}
+          p1="Need expert leak detection in California? We specialize in pinpointing leaks with advanced acoustic sensors and pressure testing. Call Us At (213) 905-4906."
         />
         {/* poster */}
         {/* -----------------------------------------About Start------------------------ */}

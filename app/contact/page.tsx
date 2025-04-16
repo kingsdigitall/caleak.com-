@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   title: {
     absolute: contentData.metaTitle,
   },
-  description: contentData.metaDescription,
+  description: "Need expert leak detection in California? Contact us today for quick, non-invasive leak detection services using advanced technology. Call Us At (213) 905-4906.",
   alternates: {
      canonical: `${ContactInfo.baseUrl}contact`,
   },
