@@ -34,6 +34,9 @@ const Footer = () => {
                 <Link href="/contact">
                   <p className="">Contact </p>
                 </Link>
+                <Link href="/our-brands">
+                  <p className="">Our Brands </p>
+                </Link>
               </div>
             </div>
             <div className="mt-20  flex flex-col items-center   justify-center text-lg md:mt-0  md:w-[26rem]">
