@@ -40,7 +40,7 @@ export function generateMetadata({ params }: { params: { services: string } }) {
     },
     description: `Need expert leak detection in ${Data?.name}? We specialize in pinpointing leaks with advanced acoustic sensors and pressure testing. Call now for a fast inspection!`,
     alternates: {
-      canonical: `https://${Data.slug}.${ContactInfo.host}/about/`,
+      canonical: `https://${Data.slug}.${ContactInfo.host}/about`,
     },
   };
 }

@@ -69,7 +69,7 @@ export default function SubdomainPage({ params }: SubdomainPageProps) {
           h1={`${ContentData.h1Banner} ${ContentData.zipCodes && ContentData.zipCodes.split("|")[0]}`}
           image={ContentData.bannerImage}
           header={ContentData.bannerQuote}
-          p1={ContentData.metaDescription}
+          p1={`${ContentData?.metaDescription.replace("Call today!",`Call us at ${ContactInfo.No}`)}.`}
         />
         {/* Section 1 */}
         {/* <p>{subDomain.map((item:any)=>(

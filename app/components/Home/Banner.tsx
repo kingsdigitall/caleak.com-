@@ -33,9 +33,9 @@ const Banner = ({
           </div>
           <div className="mt-6 text-xl font-normal">{p1 && `${p1} `}</div>
           <div className="flex flex-col items-center  md:flex-row md:gap-10 ">
-            <a id='cta-id' href={`tel:${ContactInfo.tel}`}>
+            <a id="cta-id" href={`tel:${ContactInfo.tel}`}>
               <button
-              id='cta-id'
+                id="cta-id"
                 aria-label="Call"
                 className={` mt-4 flex items-center  bg-main  p-3 px-4 text-xl  font-semibold text-white hover:bg-minor md:mt-10`}
               >

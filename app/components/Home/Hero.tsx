@@ -50,7 +50,6 @@ const Hero = () => {
           </div>
           {/* Section 1 */}
           {/* TYPES */}
-          {/* <TypeOfDumpster /> */}
           <Service />
           {/* TYPES*/}
           <Affordable />

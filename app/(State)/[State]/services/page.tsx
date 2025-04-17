@@ -30,7 +30,7 @@ export function generateMetadata({ params }: { params: { services: string } }) {
     },
     description: `Need expert leak detection in ${Data?.name}? Contact us today for quick, non-invasive leak detection services using advanced technology. Call now for a free consultation!`,
     alternates: {
-      canonical: `https://${Data.slug}.${ContactInfo.host}/services/`,
+      canonical: `https://${Data.slug}.${ContactInfo.host}/services`,
     },
   };
 }

@@ -1,0 +1,26 @@
+{
+      "metaTitle": "Find Trusted Local Plumbers | Plumbing Brands Backed by Quality",
+      "metaDescription": "Discover our national network of reputable plumbing businesses delivering expert service with local pride. Trusted names. Transparent service. Call Us At (213) 905-4906.",
+      "bannerImage": "banner.jpg",
+      "h1Banner": "Meet Our Brands – Trusted Plumbing Services in Every Neighborhood",
+      "h2": "Our Other Plumbing Brands",
+      "p2": "We take pride in being part of a growing family of trusted plumbing brands across the country. Each of our affiliated sites shares the same commitment to quality, transparency, and outstanding customer service. While every brand operates independently and serves its local community with pride, we're united under one simple goal: making plumbing services accessible, affordable, and dependable—wherever you are.<br/><br/>Below, you’ll find our network of local plumbing experts. Click through to learn more or schedule a service in your area:",
+      "h2Image": "an-cuts-a-plastic-pvc-pipe-with-special-scissors.jpg",
+      "brandslist": [
+            {
+                  "brandName": "Ben Franklin Plumbers CT",
+                  "brandLink": "http://benfranklinplumbersct.com",
+                  "brandDescription": "Serving homes and businesses across Connecticut, Ben Franklin Plumbers CT is known for their punctuality, transparent pricing, and unmatched service warranties. Whether it’s a leak or a full system replacement, they bring professional-grade solutions with a hometown touch."
+            },
+            {
+                  "brandName": "Syracuse Drain Cleaning Pros",
+                  "brandLink": "http://aceplumbingofsyracuse.com",
+                  "brandDescription": "Proudly serving Syracuse, NY, we’re your go-to team for everything from water heater repairs to sewer line inspections. With fast response times and certified pros, they’ve earned a loyal following by doing things right the first time."
+            },
+            {
+                  "brandName": "Santa Maria Plumbing Expert",
+                  "brandLink": "http://alvaradoplumbingsantamaria.com",
+                  "brandDescription": "We deliver high-quality plumbing solutions in Santa Maria, CA 93458. Whether it’s a quick repair, a full system upgrade, or support during a remodel, their team approaches every job with patience, skill, and attention to detail. It’s plumbing done right—with care that shows."
+            }
+      ]
+}

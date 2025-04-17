@@ -24,7 +24,7 @@ export function generateMetadata({ params }: { params: { services: string } }) {
       .split("[location]")
       .join(Data?.name || "California"),
     alternates: {
-      canonical: `https://${ContactInfo.host}/services/${params.services}/`,
+      canonical: `https://${ContactInfo.host}/services/${params.services}`,
     },
   };
 }
