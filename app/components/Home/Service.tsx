@@ -33,58 +33,41 @@ const StateName = contentData?.name ? (abbrevation ? `${contentData.name}, ${abb
         className="mt-4 px-4  text-center "
         dangerouslySetInnerHTML={{ __html: data.p }}
       ></div>
-      <div className="mb-10  hidden flex-wrap justify-center   gap-10 md:flex">
-        {data.lists?.map((items: any, index: number) => (
+      <div className="mb-10   flex flex-wrap   justify-center gap-10">
+        {data.lists?.map((items: ServiceItem, index: number) => (
           <div
-            className=" 1 mt-10 w-[22rem] overflow-hidden rounded-3xl border  border-gray-300 shadow-md duration-300 ease-in hover:-translate-y-4"
+            className=" 1 flex  w-[22rem] overflow-hidden rounded-2xl border border-gray-300 p-3 shadow-md duration-300 ease-in  hover:-translate-y-4 md:mt-10 md:flex-col md:rounded-3xl md:p-0"
             key={index}
           >
-            <div className="flex h-60 justify-center object-cover">
-              <Image
-                aria-hidden="true"
-                src={`/${items.imageUrl}`}
-                alt={`${items.imageUrl.split(".")[0]}`}
-                title={`${items.imageUrl.split(".")[0]}`}
-                width="900"
-                height="550"
-                className="object-cover"
-              />
-            </div>
-            <h3
-              className={`1 mt-4 flex justify-start gap-2  px-4  text-xl font-bold text-minor `}
-            >
-              <MdDoubleArrow className="text-bold text-3xl " />
-                <Link href={`/services/${items.slug}`}>{items.title.split("[location]").join(StateName)}</Link>
-            </h3>
-            <div
-              className=" p-4 text-justify text-base"
-              dangerouslySetInnerHTML={{ __html: items.description.split("[location]").join(StateName) }}
-            ></div>
-          </div>
-        ))}
-      </div>
-      <div className="block md:hidden">
-        {data.lists.map((items: any) => (
-          <div
-            className=" rounded-2xl border   p-3 shadow-xl"
-            key={items?.title}
-          >
-            <div className="flex items-center justify-start gap-4">
-              <div className="h-14 w-14 overflow-hidden rounded-full object-cover">
+            <div className="flex items-center justify-start gap-4 object-cover md:h-60 md:justify-center md:gap-0">
+              <div className="h-14 w-14 overflow-hidden rounded-full object-cover md:h-full md:w-full md:rounded-none">
                 <Image
                   aria-hidden="true"
                   src={`/${items.imageUrl}`}
-                  alt={`${items.imageUrl.split(".")}`}
-                  title={`${items.imageUrl.split(".")}`}
+                  alt={
+                    items.imageUrl.split(".")[0] || "image"
+                  }
+                  title={items.imageUrl.split(".")[0] || "image"}
                   width="900"
                   height="550"
-                  className="h-14 w-14 object-cover "
+                  className="h-14 w-14 object-cover md:h-full md:w-full "
                 />
               </div>
-              <h2 className="w-[75%]  text-lg font-bold text-main">
-                 <Link href={`/services/${items.slug}`}>{items.title.split("[location]").join(StateName)}</Link>
-              </h2>
             </div>
+            <h3
+              className={`1  mt-4 w-[75%] justify-start gap-2 px-4 text-lg font-bold text-main  md:flex  md:text-xl`}
+            >
+              <MdDoubleArrow className="text-bold hidden text-3xl md:block" />
+              <Link href={`/services/${items.slug}`}>
+                {items.title.split("in [location]").join(" ")}
+              </Link>
+            </h3>
+            <div
+              className=" hidden p-4 text-justify text-base md:block"
+              dangerouslySetInnerHTML={{
+                __html: items.description.split("[location]").join(StateName),
+              }}
+            ></div>
           </div>
         ))}
       </div>
