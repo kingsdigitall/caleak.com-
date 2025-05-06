@@ -41,6 +41,7 @@ const Hero = () => {
               <Image
                 height={10000}
                 width={10000}
+                unoptimized={true}
                 src={`/${homeData.h2Image}`}
                 className=" h-full w-full rounded-lg object-cover shadow-lg"
                 alt={homeData.h2Image.split(".")[0]}
@@ -62,6 +63,7 @@ const Hero = () => {
               <Image
                 height={10000}
                 width={10000}
+                unoptimized={true}
                 src={`/${homeData.h2Image}`}
                 className=" h-full w-full rounded-lg object-cover shadow-lg"
                 alt={homeData.h2Image.split(".")[0]}

@@ -1,14 +1,16 @@
-import { MetadataRoute } from 'next'
-import contentData from "@/components/Content/ContactInfo.json"
- 
+import { MetadataRoute } from "next";
+import contentData from "@/components/Content/ContactInfo.json";
+
 export default function robots(): MetadataRoute.Robots {
-  const BaseUrl = contentData.baseUrl
+  const BaseUrl = contentData.baseUrl;
   return {
-    rules: {
-      userAgent: '*',
-      allow: '/',
-      disallow: '/private/',
-    },
+    rules: [
+      {
+        userAgent: "*",
+        allow: "/",
+        disallow: ["/private/", "/?", "/&", "/api/", "/_next/image"],
+      },
+    ],
     sitemap: `${BaseUrl}sitemap.xml`,
-  }
+  };
 }

@@ -6,5 +6,9 @@
     "host": "caleak.com",
     "name": "California Leak Detection Specialists",
     "address": "2977 Civic Center Blvd, Roseville, MI 48066, United States",
-    "service":"Leak Detection service"
+    "service":"Leak Detection service",
+    "location": "Roseville, MI",
+    "zipCode": "48066",
+    "bannerImage": "",
+    "logo": ""
 }
