@@ -1,9 +1,37 @@
+'use client';
 import Image from "next/image";
 import Link from "next/link";
 import { RiMapPin2Fill } from "react-icons/ri";
 import data from "@/components/Content/serviceWidgetContent.json";
 import ContactInfo from "@/components/Content/ContactInfo.json";
+import { useEffect } from "react";
 const Footer = () => {
+    useEffect(() => {
+    // Check if script already exists
+    if (!document.getElementById('landbot-script')) {
+      const script = document.createElement('script');
+      script.src = "https://static.landbot.io/landbot-3/landbot-3.js";
+      script.async = true;
+      script.id = 'landbot-script';
+
+      script.onload = () => {
+        if (window.Landbot) {
+          const myLandbot = new window.Landbot.Livechat({
+            configUrl: 'https://storage.googleapis.com/landbot.pro/v3/H-2968717-1PCFIP1ZNPA0UKQR/index.json',
+            customData: {
+              sourceid: '1000773',
+            },
+          });
+
+          myLandbot.onLoad(() => {
+            myLandbot.open(); // Open chatbot on load
+          });
+        }
+      };
+
+      document.body.appendChild(script);
+    }
+  }, []);
   return (
     <div className=" flex w-full items-center justify-center bg-[#eeecec]">
       <div className=" flex w-full  items-center justify-center overflow-hidden">
