@@ -1,9 +1,11 @@
+
 import Image from "next/image";
 import Link from "next/link";
 import { RiMapPin2Fill } from "react-icons/ri";
 import data from "@/components/Content/serviceWidgetContent.json";
 import ContactInfo from "@/components/Content/ContactInfo.json";
 const Footer = () => {
+ 
   return (
     <div className=" flex w-full items-center justify-center bg-[#eeecec]">
       <div className=" flex w-full  items-center justify-center overflow-hidden">
