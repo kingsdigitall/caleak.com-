@@ -1,17 +1,17 @@
-import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { BiMailSend, BiSolidPhone, BiSolidTime } from "react-icons/bi";
 import { FaPhoneVolume } from "react-icons/fa6";
 import Banner from "@/app/components/Home/Banner";
-import contentData from "@/components/Content/contact.json";
-import ContactInfo from "@/components/Content/ContactInfo.json";
-import Navbar from "@/app/components/Navbar";
 import NavbarState from "@/app/components/State/NavbarState";
 import { headers } from "next/headers";
-import content from "@/components/Content/subDomainUrlContent.json";
 
+import contactContent from "@/app/Data/content";
+import subdomainContent from "@/app/Data/FinalContent";
+
+const content: any = subdomainContent.subdomainData;
+const ContactInfo: any = contactContent.contactContent;
+const contentData: any = contactContent.contactPageContent;
 export function generateMetadata({ params }: { params: { services: string } }) {
   const headersList = headers();
   const subdomain = headersList.get("x-subdomain") as
@@ -29,11 +29,13 @@ export function generateMetadata({ params }: { params: { services: string } }) {
   const Data: any = content[subdomain];
   return {
     title: {
-      absolute: contentData.h1Banner,
+      absolute: contentData.h1Banner?.split(ContactInfo.location.split(",")[0]).join(Data?.name || ContactInfo.location)
+      ?.split("[phone]").join(ContactInfo.No),
     },
-    description: `Need expert leak detection in ${Data?.name}? Contact us today for quick, non-invasive leak detection services using advanced technology. Call now for a free consultation!`,
+    description: contentData.metaDescription?.split(ContactInfo.location.split(",")[0]).join(Data?.name || ContactInfo.location)
+    ?.split("[phone]").join(ContactInfo.No),
     alternates: {
-      canonical: `https://${Data.slug}.${ContactInfo.host}/contact`,
+      canonical: `https://${Data.slug}.${ContactInfo.host}/contact/`,
     },
   };
 }
@@ -52,134 +54,136 @@ const page = () => {
     return <div>Error: Invalid subdomain</div>;
   }
   const Data: any = content[subdomain];
+  console.log(ContactInfo.location)
   return (
     <div className="">
       <NavbarState />
-      <div className="flex flex-col  items-center justify-center  bg-white text-black ">
-        <div className="  w-screen cursor-default text-lg  md:w-full">
-          {/* poster */}
-          <Banner
-            h1={contentData.h1Banner.split("California").join(Data?.name)}
-            image={contentData.bannerImage}
-            header={contentData?.bannerQuote}
-            p1={`Need expert leak detection in ${Data?.name}? Contact us today for quick, non-invasive leak detection services using advanced technology. Call now for a free consultation!`}
-          />
-          {/* poster */}
-          {/* -----------------------------------------button Start------------------------ */}
-         
-          {/* -----------------------------------------button End------------------------ */}
-          {/* Content1 */}
-          <div className="flex    items-center justify-center ">
-            <div className="mt-10 px-4  md:px-20">
-              <div className="  mt-10 gap-6 md:flex  ">
-                <Image
-                  src={`/${contentData.h2Image}`}
-                  width={500}
-                  height={400}
-                  alt={contentData.h2Image.split(".")[0]}
-                />
-                <div className="flex flex-col items-center justify-center">
-                  <div className="w-full">
-                    <h2 className="mt-4 text-3xl font-bold md:mt-0">
-                      <br />
-                      {contentData.h2.split("California").join(Data?.name)}
-                    </h2>
-                  </div>
+      <div className="flex flex-col justify-center items-center bg-white text-black">
+      <div className="cursor-default w-screen md:w-full text-lg">
+        {/* Poster */}
+        <Banner
+          h1={contentData.h1Banner?.split(ContactInfo.location.split(",")[0]).join(Data?.name || ContactInfo.location)
+            ?.split("[phone]").join(ContactInfo.No)}
+          image={contentData.bannerImage}
+          header={contentData?.bannerQuote}
+          p1={contentData.metaDescription?.split(ContactInfo.location.split(",")[0]).join(Data?.name || ContactInfo.location)
+            ?.split("[phone]").join(ContactInfo.No)}
+        />
+        {/* Poster */}
 
-                  <div
-                    className=" mt-4 text-justify"
-                    dangerouslySetInnerHTML={{ __html: contentData.p2.split("California").join(Data?.name) }}
-                  ></div>
-                  <Link id="cta-id" href={`tel:${ContactInfo.tel}`}>
-                    <button
-                      id="cta-id"
-                      className={`mt-10 flex items-center justify-center rounded-3xl border bg-main p-4 text-xl font-bold text-white hover:bg-minor`}
-                    >
-                      <FaPhoneVolume className="mr-2 text-3xl" />
-                      Call Us Now
-                    </button>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* Content1 */}
-          {/* -----------------------------------------a Conversation Start ------------------------ */}
-          <div className="">
-            <div className="mt-16">
-              <div className={`text-center text-4xl font-extrabold text-main`}>
-                Let&apos;s Start a Conversation
-              </div>
-              <div className="border-double  text-center">
-                <a id="cta-id" href={`tel:${ContactInfo.tel}`}>
-                  <button
-                    id="cta-id"
-                    className={` mt-3 rounded-lg bg-main px-4 py-3 font-bold tracking-wide text-white     shadow-lg hover:bg-minor`}
-                  >
-                    {ContactInfo.No}
-                  </button>
-                </a>
-              </div>
-            </div>
-            {/* Content 2 */}
-            <div className="mt-16 grid w-full grid-cols-1  gap-6 px-4 md:grid-cols-2 md:px-24">
-              <div className=" flex w-full flex-col justify-around gap-3   ">
-                <div className="">
-                  <h2 className="text-3xl font-bold">{contentData?.h3.split("California").join(Data?.name)}</h2>
-                  <div
-                    className=" mt-4 text-justify"
-                    dangerouslySetInnerHTML={{ __html: contentData.p3.split("California").join(Data?.name) }}
-                  ></div>
-                </div>
-              </div>
-              <div className="">
-                <Image
-                  src={`/${contentData.h3Image}`}
-                  className="h-[350px] w-full rounded-lg border object-cover  shadow-lg"
-                  alt={contentData.h3Image.split(".")[0]}
-                  width={1000}
-                  height={500}
-                />
-              </div>
-            </div>
-            {/* Content 2 */}
-            <div className="group mx-4 mt-16 flex w-11/12 flex-col items-center justify-center gap-6 px-10 md:mx-0 md:mb-4 md:flex-row md:space-x-2 xl:w-full  ">
+        {/* Content1 */}
+        <div className="flex justify-center items-center">
+          <div className="md:px-20 px-4 mt-10">
+            <div className="gap-6  mt-10 grid grid-cols-1 md:grid-cols-2 items-center">
               <Image
-                aria-hidden="true"
-                src="/img1.png"
-                alt="Calling icon Star dryer vent"
-                width="200"
-                height="200"
-                className="duration-300  ease-in group-hover:-translate-y-4"
+                src={`${contentData.h2Image}`}
+                width={500}
+                height={400}
+                title={contentData.h2Image.split("/").pop()?.split(".")[0] || "image"}
+                alt={contentData.h2Image.split("/").pop()?.split(".")[0] || "image"}
+                className="object-cover w-full"
               />
-              <Link
-                id="cta-id"
-                href={`tel:${ContactInfo.tel}`}
-                className="grid w-full place-items-center"
-              >
-                <div
-                  id="cta-id"
-                  className="  m-h-64 w-[90%]  transform rounded-lg bg-white  p-2 text-center text-2xl font-semibold ring ring-main transition  duration-300 ease-in hover:shadow-xl hover:shadow-minor group-hover:translate-y-4  "
-                  dangerouslySetInnerHTML={{ __html: contentData.ctaText }}
-                ></div>
-              </Link>
+              <div className="flex flex-col justify-center items-center">
+                <div className="w-full">
+                  <h2 className="text-3xl mt-4 md:mt-0 font-bold">
+                    {contentData.h2?.split(ContactInfo.location).join(Data?.name || ContactInfo.location)
+    ?.split("[phone]").join(ContactInfo.No)}
+                  </h2>
+                </div>
+                <p
+                  className="mt-4 text-justify"
+                  dangerouslySetInnerHTML={{ __html: contentData.p2?.split(ContactInfo.location).join(Data?.name || ContactInfo.location)
+                    ?.split("[phone]").join(ContactInfo.No) }}
+                ></p>
+                <Link id='cta-id' href={`tel:${ContactInfo.tel}`}>
+                  <button id='cta-id'
+                    className="bg-main hover:bg-minor text-white font-bold p-4 rounded-3xl mt-10 text-xl flex justify-center border items-center"
+                  >
+                    <FaPhoneVolume className="text-3xl mr-2" />
+                    Call Us Now
+                  </button>
+                </Link>
+              </div>
             </div>
           </div>
-          {/* -----------------------------------------a Conversation End------------------------ */}
-          {/* <ContactFaq/> */}
-          {/* -----------------------------------------Map Start---------------------------- */}
-          <div className="mt-10 w-full">
-            <iframe
-              src={`https://maps.google.com/maps?q=${Data.slug}+USA&t=&z=7&ie=UTF8&iwloc=&output=embed`}
-              height="350"
-              className="mt-10 w-full  rounded-lg border"
-              loading="lazy"
-              title="map"
-            ></iframe>
-          </div>
-          {/* -----------------------------------------Map End---------------------------- */}
         </div>
+        {/* Content1 */}
+
+        {/* Let's Start a Conversation */}
+        <div className="mt-16">
+          <div className="text-main text-4xl font-extrabold text-center">
+            Let&apos;s Start a Conversation
+          </div>
+          <div className="text-center border-double">
+            <a id='cta-id' href={`tel:${ContactInfo.tel}`}>
+              <button id='cta-id'
+                className="bg-main hover:bg-minor shadow-lg rounded-lg py-3 px-4 tracking-wide mt-3 text-white font-bold"
+              >
+                {ContactInfo.No}
+              </button>
+            </a>
+          </div>
+        </div>
+        {/* Let's Start a Conversation */}
+
+        {/* Content 2 */}
+        <div className="grid grid-cols-1 w-full md:grid-cols-2 gap-6 mt-16 md:px-24 px-4 items-center">
+          <div className="flex flex-col justify-around w-full gap-3">
+            <div>
+              <h2 className="text-3xl font-bold">{contentData?.h3?.split(ContactInfo.location).join(Data?.name || ContactInfo.location)
+      ?.split("[phone]").join(ContactInfo.No)}</h2>
+              <div
+                className="mt-10 text-justify"
+                dangerouslySetInnerHTML={{ __html: contentData.p3?.split(ContactInfo.location).join(Data?.name || ContactInfo.location)
+                  ?.split("[phone]").join(ContactInfo.No) }}
+              ></div>
+            </div>
+          </div>
+          <div>
+            <Image
+              src={`${contentData.h3Image}`}
+              className="border rounded-lg w-full h-[350px] shadow-lg object-cover"
+              alt={contentData.h3Image.split("/").pop()?.split(".")[0] || "image"}
+              width={1000}
+              height={500}
+            />
+          </div>
+        </div>
+        {/* Content 2 */}
+
+        {/* Call to Action */}
+        <div className="xl:w-full w-11/12 mx-4 md:mx-0 mt-16 md:mb-4 px-10 flex flex-col gap-6 md:flex-row justify-center items-center group md:space-x-2">
+          <Image
+            aria-hidden="true"
+            src="https://ik.imagekit.io/h7rza8886p/img1.webp?updatedAt=1747997044944"
+            alt="Calling icon"
+            width={200}
+            height={200}
+            className="group-hover:-translate-y-4 ease-in duration-300"
+          />
+          <Link id='cta-id' href={`tel:${ContactInfo.tel}`} className="w-full grid place-items-center">
+            <p id='cta-id'
+              className="bg-white w-[90%] text-2xl font-semibold text-center rounded-lg m-h-64 p-2 ring ring-main transform hover:shadow-minor group-hover:translate-y-4 hover:shadow-xl transition ease-in duration-300"
+              dangerouslySetInnerHTML={{ __html: contentData.ctaText?.split(ContactInfo.location).join(Data?.name || ContactInfo.location)
+                          ?.split("[phone]").join(ContactInfo.No) }}
+            ></p>
+          </Link>
+        </div>
+        {/* Call to Action */}
+
+        {/* Map */}
+        <div className="w-full mt-10">
+          <iframe
+            src={`https://maps.google.com/maps?q=${content[subdomain]?.slug}+USA&t=&z=7&ie=UTF8&iwloc=&output=embed`}
+            height="350"
+            className="border w-full rounded-lg mt-10"
+            loading="lazy"
+            title="map"
+          ></iframe>
+        </div>
+        {/* Map */}
       </div>
+    </div>
     </div>
   );
 };

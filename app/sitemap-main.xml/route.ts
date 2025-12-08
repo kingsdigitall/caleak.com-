@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
-import serviceData from "@/components/Content/serviceWidgetContent.json";
+import serviceData from "@/components/Content/servicePage.json";
 import contentData from "@/components/Content/ContactInfo.json";
- 
+
 export async function GET() {
   const baseUrl = contentData.baseUrl;
 
-  const ServiceSlug: string[] = serviceData.lists.map(
+  const ServiceSlug: string[] = serviceData.serviceData.lists.map(
     (item: any) => item.slug,
   );
 
@@ -36,6 +36,12 @@ export async function GET() {
   </url>
   <url>
     <loc>${baseUrl}contact/</loc>
+    <lastmod>${new Date().toISOString()}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>${baseUrl}gallery/</loc>
     <lastmod>${new Date().toISOString()}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
