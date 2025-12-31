@@ -51,8 +51,8 @@ const page = () => {
       <div className=" py-10  justify-center flex flex-col bg-slate-50">
       {contentData.brandslist.map((i, index) => (
         <div key={index} className="grid border-b border-black p-4 md:py-10 justify-center items-center gap-4 max-w-6xl mx-auto">
-              <p className="w-1/2 text-3xl text-main hover:underline duration-100 ease-in-out"><Link href={i.brandLink}>{i.brandName}</Link></p>
-              <p className="" dangerouslySetInnerHTML={{ __html: i.brandDescription }}></p> 
+              <p className="w-1/2 text-3xl text-main duration-100 ease-in-out">{i.brandName}</p>
+              <p className="" dangerouslySetInnerHTML={{ __html: i.brandDescription }}></p>
         </div>
       ))}
       </div>
