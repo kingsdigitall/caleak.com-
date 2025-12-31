@@ -2,9 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { FaPhoneVolume } from "react-icons/fa";
-import contactContent from "@/app/Data/content";
-
-const ContactInfo: any = contactContent.contactContent;
+import ContactInfo from "@/components/Content/ContactInfo.json";
 
 const Banner = ({
   image,
@@ -12,8 +10,8 @@ const Banner = ({
   p1,
   h1,
 }: {
-  image?: string;
-  header?: string;
+  image: string;
+  header: string;
   p1: string;
   h1: string;
 }) => {
@@ -21,7 +19,7 @@ const Banner = ({
     <div className=" relative  h-[70vh] max-w-[2100px] duration-150 ease-in-out md:mt-0 md:h-[500px] ">
       <Image
         className="absolute h-[70vh] w-[100%] object-cover object-right  md:h-[500px] "
-        src={image? image:ContactInfo.bannerImage}
+        src={`/${image}`}
         alt="Banner_Image"
         width={900}
         height={900}
@@ -30,6 +28,7 @@ const Banner = ({
         <div className=" px-4 pt-4 font-bold leading-[50px] text-white md:mt-14 md:px-0 md:pt-40 lg:ml-40 lg:w-1/2 lg:pt-0">
           {" "}
           <div className="">
+            {header && header} <br />{" "}
             <h1 className={`inline text-white`}>{h1}</h1>
           </div>
           <div className="mt-6 text-xl font-normal">{p1 && `${p1} `}</div>

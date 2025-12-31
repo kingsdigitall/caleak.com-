@@ -1,46 +1,22 @@
 import React from "react";
 import FullPage from "@/app/components/location/FullPage";
+import contentData from "@/components/Content/location.json";
 import Banner from "@/app/components/Home/Banner";
 import { Metadata } from "next";
 import Navbar from "../components/Navbar";
-import { headers } from "next/headers";
-
-import contactContent from "@/app/Data/content";
-
-const ContactInfo: any = contactContent.contactContent;
-const contentData: any = contactContent.locationPageContent;
+import ContactInfo from "@/components/Content/ContactInfo.json";
 
 export const metadata: Metadata = {
   title: {
     absolute: contentData.metaTitle,
   },
-  description: contentData.metaDescription?.split("[location]").join( ContactInfo.location)
-  ?.split("[phone]").join(ContactInfo.No),
+  description: contentData.metaDescription,
   alternates: {
-    canonical: `${ContactInfo.baseUrl}locations/`,
+    canonical: `${ContactInfo.baseUrl}locations`,
   },
 };
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
-
-async function getSubdomainData() {
-  const headersList = headers();
-  const proto: any = headersList.get("x-forwarded-proto") || "http";
-  const host = headersList.get("host");
-  const baseUrl = `${proto}://${host}`;
-  const res = await fetch(`${baseUrl}/api/subdomains`, { cache: "no-store" });
-  return res.json().catch(() => ({}));
-}
-
-const page = async () => {
-  let subdomains: any[] = [];
-  try {
-    const data = await getSubdomainData();
-    if (data && data.subdomains) {
-      subdomains = data.subdomains;
-    }
-  } catch (e) {}
+const page = () => {
   return (
     <div className="">
       <Navbar />
@@ -49,11 +25,14 @@ const page = async () => {
           h1={contentData.h1Banner}
           image={contentData.bannerImage}
           header={contentData.bannerQuote}
-          p1={contentData.metaDescription?.split("[location]").join( ContactInfo.location)
-            ?.split("[phone]").join(ContactInfo.No)}
+          p1={contentData.metaDescription}
         />
         <div className="py-10">
-          <FullPage subdomains={subdomains} />
+          <h2 className="text-center text-3xl text-main">
+            {" "}
+            {contentData.areatitle}
+          </h2>
+          <FullPage />
         </div>
       </div>
     </div>

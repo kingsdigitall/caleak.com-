@@ -1,51 +1,9 @@
 {
-  "metaTitle": "Leak Detection & Repair Services in California",
-  "metaDescription": "Offering professional leak detection, pipe repair, drain cleaning, water heater installation, and emergency plumbing across California. Call (213) 905-4906 for the best plumbing expert.",
-  "bannerQuote": "",
-  "bannerImage": "banner.jpg",
-  "h1Banner": "We provide a full range of Leak Detection services for homes and businesses in California.",
-  "p1Banner": "",
-  "serviceTitle": "Our Leak Detection Services",
-  "serviceData": {
-    "title": "Comprehensive Leak Detection & Plumbing Services",
-    "p": "",
-    "lists": [
-      {
-        "title": "Plumbing Inspection",
-        "description": "Thorough plumbing inspections using advanced tools to detect hidden leaks, weak pipes, and potential failures.",
-        "slug": "plumbing-inspection",
-        "imageUrl": "banner.jpg"
-      },
-      {
-        "title": "Slab Leak Detection",
-        "description": "Expert slab leak detection to locate hidden leaks under concrete, preventing structural damage and mold growth.",
-        "slug": "slab-leak-detection",
-        "imageUrl": "banner.jpg"
-      },
-      {
-        "title": "Underground Leak Detection",
-        "description": "Advanced underground leak detection using non-invasive technology to find buried water leaks.",
-        "slug": "underground-leak-detection",
-        "imageUrl": "banner.jpg"
-      },
-      {
-        "title": "Gas Leak Detection",
-        "description": "Certified gas leak detection for homes and businesses, ensuring safety by locating hazardous leaks.",
-        "slug": "gas-leak-detection",
-        "imageUrl": "banner.jpg"
-      },
-      {
-        "title": "Pool Leak Detection",
-        "description": "Accurate pool leak detection to find cracks, liner issues, or plumbing leaks.",
-        "slug": "pool-leak-detection",
-        "imageUrl": "banner.jpg"
-      },
-      {
-        "title": "Pipe Leak Repair",
-        "description": "Fast and reliable pipe leak repair to stop leaks and prevent water damage.",
-        "slug": "pipe-leak-repair",
-        "imageUrl": "banner.jpg"
-      }
-    ]
-  }
+      "metaTitle": "Leak Detection & Repair Services in California",
+      "metaDescription": "Offering professional leak detection, pipe repair, drain cleaning, water heater installation, and emergency plumbing across California. Call (213) 905-4906 for the best plumbing expert.",
+      "bannerQuote": "",
+      "bannerImage": "banner.jpg",
+      "h1Banner": "We provide a full range of Leak Detection services for homes and businesses in California. ",
+      "p1Banner":"",
+      "serviceTitle":""
 }

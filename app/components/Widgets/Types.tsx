@@ -1,9 +1,8 @@
 import Image from "next/image";
 import React from "react";
-import data1 from "@/components/Content/servicePage.json";
+import data from "@/components/Content/serviceWidgetContent.json";
 
 const Types = () => {
-  const data = data1.serviceData;
   return (
     <div className="mt-16 px-4 md:px-24">
       <h2 className="text-center text-3xl font-extrabold text-main">

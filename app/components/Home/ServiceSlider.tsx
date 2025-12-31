@@ -3,20 +3,22 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
-import data1 from "@/components/Content/servicePage.json";
+import data from "@/components/Content/serviceWidgetContent.json";
+
+
 
 const ServiceSlider = () => {
-  const data = data1.serviceData;
-
+  const testimonials = data
+ 
   const settings = {
-    className: "center",
-    centerPadding: "60px",
+      className: "center",
+      centerPadding: "60px",
     dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
-    arrow: true,
+    arrow:true,
     autoplay: true,
     autoplaySpeed: 2000,
     cssEase: "linear",
@@ -27,8 +29,8 @@ const ServiceSlider = () => {
           slidesToShow: 4,
           slidesToScroll: 4,
           infinite: true,
-          dots: true,
-        },
+          dots: true
+        }
       },
       {
         breakpoint: 800,
@@ -36,42 +38,40 @@ const ServiceSlider = () => {
           slidesToShow: 2,
           slidesToScroll: 2,
           initialSlide: 2,
-          dots: true,
-        },
+          dots: true
+        }
       },
       {
         breakpoint: 520,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          dots: true,
-        },
-      },
-    ],
+          dots: true
+        }
+      }
+    ]
   };
   return (
-    <div className="relative px-4  py-5">
+    <div className="py-5 px-4  relative">
       {data.lists.map((item: any) => (
-        <div className=" rounded-2xl border   p-3 shadow-xl" key={item?.title}>
-          <div className="flex items-center justify-start gap-4">
-            <div className="h-14 w-14 overflow-hidden rounded-full object-cover">
-              <Image
+            <div className=" rounded-2xl border   p-3 shadow-xl" key={item?.title}>
+              <div className="flex items-center justify-start gap-4">
+                <div className="w-14 h-14 object-cover overflow-hidden rounded-full">
+                <Image
                 aria-hidden="true"
                 src={`/${item.imageUrl}`}
                 alt={`${item.imageUrl.split(".")}`}
                 title={`${item.imageUrl.split(".")}`}
                 width="900"
                 height="550"
-                className="h-14 w-14 object-cover "
+                className="object-cover w-14 h-14 "
               />
+                </div>
+                <h2 className="text-lg  font-bold w-[75%] text-main">{item.title} </h2>
+              </div>
             </div>
-            <h2 className="w-[75%]  text-lg font-bold text-main">
-              {item.title}{" "}
-            </h2>
-          </div>
-        </div>
-      ))}
-      {/* <Slider {...settings} >
+          ))}
+    {/* <Slider {...settings} >
       {
         testimonials.map((item:any ,index:number) => (
           
@@ -89,6 +89,7 @@ const ServiceSlider = () => {
     </Slider> */}
     </div>
   );
-};
+}
 
 export default ServiceSlider;
+

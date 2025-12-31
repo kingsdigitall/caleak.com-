@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
 import "./globals.css";
+import Navbar from "./components/Navbar";
 import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 import Footer from "./components/Footer";
-import CallMobileButton from "./components/Widgets/CallMobileButton";
-import contactContent from "@/app/Data/content";
-
-const ContactInfo: any = contactContent.contactContent;
+import HourCta from "./components/Home/HourCta";
+import CallButtonMobile from "./components/Widgets/CallButtonMobile";
 
 const inter = DM_Sans({
   subsets: ["latin"],
@@ -25,16 +24,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <link rel="icon" href={ContactInfo.favicon} />
-      </head>
-      <GoogleAnalytics gaId={ContactInfo.googleAnalytics} />
-      {/* <GoogleTagManager gtmId="" /> */}
-      <body className={'w-full overflow-x-hidden max-w-[1910px] mx-auto ${inter.className}'}>
+      <GoogleAnalytics gaId="" />
+      <GoogleTagManager gtmId="GTM-N7LCVRSH" />
+      <body className={`w-full ${inter.className}`}>
         <div className="bg-white">
           {children}
         </div>
-        <CallMobileButton/>
+        <CallButtonMobile/>
         <Footer />
       </body>
     </html>

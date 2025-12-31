@@ -4,15 +4,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
-
-import contactContent from "@/app/Data/content";
-import subdomainContent from "@/app/Data/FinalContent";
-
-
-const ContactInfo: any = contactContent.contactContent;
-const home: any = contactContent.homePageContent;
-const content: any = subdomainContent.subdomainData;
-
+import Testimonials from "@/components/Content/Reviews.json";
+import content from "@/components/Content/subDomainUrlContent.json";
 
 interface Review {
   id: number;
@@ -25,13 +18,12 @@ interface ReviewWidgetProps {
 }
 
 const ReviewWidget: React.FC<ReviewWidgetProps> = ({ value = "" }) => {
-  const Testimonials = home?.reviews ;
   const [shuffledTestimonials, setShuffledTestimonials] = useState(Testimonials);
 
   useEffect(() => {
     // Shuffle testimonials on the client side after the component mounts
     setShuffledTestimonials([...Testimonials].sort(() => 0.5 - Math.random()));
-  }, [Testimonials]);
+  }, []);
 
   const contentData: { name: string } = content[value as keyof typeof content];
   const abbrevation = value?.split("-").pop()?.toUpperCase();
@@ -39,7 +31,7 @@ const ReviewWidget: React.FC<ReviewWidgetProps> = ({ value = "" }) => {
     ? abbrevation
       ? `${contentData.name}, ${abbrevation}`
       : contentData.name
-    : ContactInfo.location.split(",")[0].trim();
+    : " California";
 
   const settings = {
     dots: true,
@@ -92,7 +84,7 @@ const ReviewWidget: React.FC<ReviewWidgetProps> = ({ value = "" }) => {
           >
             <div className="flex items-center justify-center">
               <Image
-                src="https://ik.imagekit.io/h7rza8886p/5Star.webp?updatedAt=1746874235628"
+                src="/5Star.png"
                 alt="review"
                 width={1000}
                 height={500}

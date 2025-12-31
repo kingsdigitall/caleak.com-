@@ -1,16 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    trailingSlash: true,
-    images: {
-      remotePatterns: [
-        {
-          protocol: 'https',
-          hostname: 'ik.imagekit.io',
-          pathname: '**',
-        },
-      ]
-    }
+      images: {
+          domains: ['images.unsplash.com','picsum.photos',"cdn.sanity.io",'cdn.weatherapi.com'],
+      }
   }
   
   module.exports = nextConfig
-  

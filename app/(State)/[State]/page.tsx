@@ -1,7 +1,9 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import content from "@/components/Content/subDomainUrlContent.json";
 import Banner from "@/app/components/Home/Banner";
 import Service from "@/app/components/Home/Service";
+import ContactInfo from "@/components/Content/ContactInfo.json";
 import Faq from "@/app/components/Home/Faq";
 import HourCta from "@/app/components/Home/HourCta";
 import ReviewWidget from "@/app/components/Widgets/ReviewWidget";
@@ -13,148 +15,40 @@ import Link from "next/link";
 import ZipAndNeighAccordian from "@/app/components/Home/ZipAndNeighAccordian";
 // import Service from "@/app/Components/Service";
 
-import contactContent from "@/app/Data/content";
-import subdomainContent from "@/app/Data/FinalContent";
-import { headers } from "next/headers";
-import PortaPottyCalculator from "@/app/components/Widgets/Calculator";
-
-const ContactInfo: any = contactContent.contactContent;
-const home: any = contactContent.homePageContent;
-
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
-
-// Function to fetch subdomain data from API
-async function getSubdomainData() {
-  const headersList = headers();
-  const proto: any = headersList.get("x-forwarded-proto") || "http";
-  const host = headersList.get("host");
-  const baseUrl = `${proto}://${host}`;
-  const res = await fetch(`${baseUrl}/api/subdomains`, { cache: "no-store" });
-  return res.json().catch(() => ({}));
-}
-
 interface SubdomainPageProps {
   params: { State: string };
 }
-const stateName: Record<string, string> = {
-  AL: "Alabama",
-  AK: "Alaska",
-  AZ: "Arizona",
-  AR: "Arkansas",
-  CA: "California",
-  CO: "Colorado",
-  CT: "Connecticut",
-  DE: "Delaware",
-  FL: "Florida",
-  GA: "Georgia",
-  HI: "Hawaii",
-  ID: "Idaho",
-  IL: "Illinois",
-  IN: "Indiana",
-  IA: "Iowa",
-  KS: "Kansas",
-  KY: "Kentucky",
-  LA: "Louisiana",
-  ME: "Maine",
-  MD: "Maryland",
-  MA: "Massachusetts",
-  MI: "Michigan",
-  MN: "Minnesota",
-  MS: "Mississippi",
-  MO: "Missouri",
-  MT: "Montana",
-  NE: "Nebraska",
-  NV: "Nevada",
-  NH: "New Hampshire",
-  NJ: "New Jersey",
-  NM: "New Mexico",
-  NY: "New York",
-  NC: "North Carolina",
-  ND: "North Dakota",
-  OH: "Ohio",
-  OK: "Oklahoma",
-  OR: "Oregon",
-  PA: "Pennsylvania",
-  RI: "Rhode Island",
-  SC: "South Carolina",
-  SD: "South Dakota",
-  TN: "Tennessee",
-  TX: "Texas",
-  UT: "Utah",
-  VT: "Vermont",
-  VA: "Virginia",
-  WA: "Washington",
-  WV: "West Virginia",
-  WI: "Wisconsin",
-  WY: "Wyoming",
-};
 
-export async function generateMetadata({ params }: SubdomainPageProps) {
+export function generateMetadata({ params }: SubdomainPageProps) {
   const { State } = params;
-
-  // Fetch content from API
-  let content: any = {};
-  try {
-    const data = await getSubdomainData();
-    if (data && data.subdomains) {
-      // Convert array back to object with slug as key
-      content = data.subdomains.reduce((acc: any, item: any) => {
-        if (item.slug) {
-          acc[item.slug] = item;
-        }
-        return acc;
-      }, {});
-    }
-  } catch (e) {
-    // Fallback to static content if API fails
-    content = subdomainContent.subdomainData;
-  }
-
   const cityData: any = content;
   const ContentData = cityData[State];
-
   return {
-    title: ContentData?.metaTitle
-      ?.split("[location]")
-      .join(ContentData?.name || ContactInfo.location)
-      ?.split("[phone]")
-      .join(ContactInfo.No),
-    description: ContentData?.metaDescription
-      ?.split("[location]")
-      .join(ContentData?.name || ContactInfo.location)
-      ?.split("[phone]")
-      .join(ContactInfo.No),
+    title: ContentData?.metaTitle,
+    description: ContentData?.metaDescription,
     alternates: {
       canonical: `https://${State}.${ContactInfo.host}`,
     },
   };
 }
-export default async function SubdomainPage({ params }: SubdomainPageProps) {
+interface CityData {
+  slug: string;
+  bannerText: string;
+  hone: string;
+  pone: string;
+  htwo: string;
+  ptwo: string;
+  hthree: string;
+  pthree: string;
+  hfour: string;
+  pfour: string;
+  history: string[];
+  topSight: { name: string; image: string; description: string }[];
+}
+export default function SubdomainPage({ params }: SubdomainPageProps) {
   // console.log(params)
   const { State } = params;
-
-  // Fetch content from API
-  let content: any = {};
-  try {
-    const data = await getSubdomainData();
-    if (data && data.subdomains) {
-      // Convert array back to object with slug as key
-      content = data.subdomains.reduce((acc: any, item: any) => {
-        if (item.slug) {
-          acc[item.slug] = item;
-        }
-        return acc;
-      }, {});
-    }
-  } catch (e) {
-    // Fallback to static content if API fails
-    content = subdomainContent.subdomainData;
-  }
-
   const cityData: any = content;
-  const abbrevations: any = State.split("-").pop();
-
   // console.log(State)
   // Validate subdomain
   const subDomain = Object.keys(cityData);
@@ -164,106 +58,20 @@ export default async function SubdomainPage({ params }: SubdomainPageProps) {
   }
   // nity or db query us particular subdomain read data from database .... neeche theme nu pass hoyega and page render hojaega
   // Render subdomain-specific content
-  const ContentData = JSON.parse(
-    JSON.stringify(cityData[State])
-      .split("[location]")
-      .join(ContactInfo.location)
-      .split("[phone]")
-      .join(ContactInfo.No),
-  );
+  const ContentData = cityData[State];
   const slugs: any = Object.keys(cityData)
     .filter((key) => key !== State)
     .map((key) => cityData[key]);
-
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        name: `${ContactInfo.name}`,
-        image: `${ContactInfo.logoImage}`,
-        address: {
-          "@type": "PostalAddress",
-          streetAddress: `${stateName[abbrevations.toUpperCase()]} ${ContactInfo.service}`,
-          addressLocality: `${ContentData?.name}, ${abbrevations.toUpperCase()}`,
-          addressRegion: stateName[abbrevations.toUpperCase()],
-          postalCode: ContentData?.zipCodes.split("|")[0] || "",
-          addressCountry: "US",
-        },
-        review: {
-          "@type": "Review",
-          reviewRating: {
-            "@type": "Rating",
-            ratingValue: "4.9",
-            bestRating: "5",
-          },
-          author: {
-            "@type": "Person",
-            name: `${stateName[abbrevations.toUpperCase()]} ${ContactInfo.service}`,
-          },
-        },
-        telephone: ContactInfo.No,
-        openingHoursSpecification: {
-          "@type": "OpeningHoursSpecification",
-          dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-          opens: "09:00",
-          closes: "20:00",
-        },
-      },
-      {
-        "@context": "https://schema.org",
-        "@type": "Product",
-        name: `${ContactInfo.service} in ${ContentData?.name}, ${abbrevations.toUpperCase()}`,
-        brand: {
-          "@type": "Brand",
-          name: `${ContactInfo.service} ${ContentData?.name}, ${abbrevations.toUpperCase()} Pros`,
-        },
-        description: `${ContentData?.metaDescription
-          ?.split("[location]")
-          .join(ContentData?.name || ContactInfo.location)
-          ?.split("[phone]")
-          .join(ContactInfo.No)}`,
-        url: `https://${State}.${ContactInfo.host}`,
-        aggregateRating: {
-          "@type": "AggregateRating",
-          reviewCount: 7,
-          ratingValue: 4.802,
-        },
-      },
-      {
-        "@type": "FAQPage",
-        mainEntity: ContentData.faq.map((faq: any) => ({
-          "@type": "Question",
-          name: faq?.ques?.split("[location]").join(State),
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: faq?.ans?.split("[location]").join(State),
-          },
-        })),
-      },
-    ],
-  };
-  
+  // console.log(ContentData)
   return (
     <div className="">
       <NavbarState />
-      <section>
-        {/* Add JSON-LD to your page */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        {/* ... */}
-      </section>
       <div className="mx-auto max-w-[2100px] overflow-hidden">
         <Banner
-          h1={`${ContentData.h1Banner?.split("[location]").join( ContentData?.name || ContactInfo.location)
-            ?.split("[phone]").join(ContactInfo.No)} ${ContentData.zipCodes && ContentData.zipCodes.split("|")[0]}`}
+          h1={`${ContentData.h1Banner} ${ContentData.zipCodes && ContentData.zipCodes.split("|")[0]}`}
           image={ContentData.bannerImage}
           header={ContentData.bannerQuote}
-          p1={`${ContentData?.metaDescription?.split("[location]").join( ContentData?.name || ContactInfo.location)
-            ?.split("[phone]").join(ContactInfo.No)}.`}
+          p1={`${ContentData?.metaDescription.replace("Call today!",`Call us at ${ContactInfo.No}`)}.`}
         />
         {/* Section 1 */}
         {/* <p>{subDomain.map((item:any)=>(
@@ -274,9 +82,9 @@ export default async function SubdomainPage({ params }: SubdomainPageProps) {
             <Image
               height={1000}
               width={1000}
-              src={`${ContentData?.h2Image}`}
+              src={`/${ContentData?.h2Image}`}
               className="h-full w-full  rounded-lg object-cover shadow-lg"
-              alt={ContentData?.h2Image.split("/").pop()?.split(".")[0] || "image"}
+              alt={ContentData?.h2Image.split(".")[0]}
             />
           </div>
           <div className=" flex w-full flex-col gap-3 ">
@@ -379,10 +187,10 @@ export default async function SubdomainPage({ params }: SubdomainPageProps) {
               <Image
                 height={10000}
                 width={10000}
-                src={`${ContentData.h5Image}`}
+                src={`/${ContentData.h5Image}`}
                 className=" h-[16rem] w-full rounded-lg object-cover shadow-lg"
-                alt={ContentData.h5Image.split("/").pop()?.split(".")[0] || "image"}
-                title={ContentData.h5Image.split("/").pop()?.split(".")[0] || "image"}
+                alt={ContentData.h5Image.split(".")[0]}
+                title={ContentData.h5Image.split(".")[0]}
               />
             </div>
           </div>
@@ -395,10 +203,10 @@ export default async function SubdomainPage({ params }: SubdomainPageProps) {
               <Image
                 height={10000}
                 width={10000}
-                src={`${ContentData?.h6Image}`}
+                src={`/${ContentData?.h6Image}`}
                 className=" h-[17rem] w-full rounded-lg object-cover  shadow-lg"
-                alt={ContentData?.h6Image.split("/").pop()?.split(".")[0] || "image"}
-                title={`${ContentData.h6Image.split("/").pop()?.split(".")[0] || "image"} ,${ContentData.name}`}
+                alt={ContentData?.h6Image.split(".")[0]}
+                title={`${ContentData.h6Image.split(".")[0]} ,${ContentData.name}`}
               />
             </div>
             <div className="flex flex-col justify-center    ">
@@ -483,7 +291,6 @@ export default async function SubdomainPage({ params }: SubdomainPageProps) {
         ) : null}
         {/* Season Section */}
         <ProcessWidget />
-        
         {/* Cta */}
         <div className="mt-14 md:mt-28">
           <HourCta />
@@ -503,9 +310,9 @@ export default async function SubdomainPage({ params }: SubdomainPageProps) {
             </div>
             <div className="">
               <Image
-                src={`${ContentData?.h7Image}`}
+                src={`/${ContentData?.h7Image}`}
                 className="h-[100%] w-full rounded-lg border object-cover shadow-lg "
-                alt={ContentData?.h7Image.split("/").pop()?.split(".")[0] || "image"}
+                alt={ContentData?.h7Image.split(".")[0]}
                 width={1000}
                 height={500}
               />
@@ -551,15 +358,14 @@ export default async function SubdomainPage({ params }: SubdomainPageProps) {
             <AreaWeServe slugs={slugs} />
           </div>
         )}
-        {/* Neighborhood */}
-   {ContentData?.neighbourhoods ? (
+         {/* Neighborhood */}
+        {ContentData?.neighbourhoods ? (
           <div className="">
             <div className="block border px-4 md:hidden">
               <ZipAndNeighAccordian
                 ques={`Neighborhoods we serve in  ${ContentData?.name}`}
                 ans={ContentData?.neighbourhoods?.split("|")}
                 slug={ContentData?.slug}
-                neighborhood={true}
               />
             </div>
             <div className="mt-28 hidden items-center justify-start md:mx-40 md:block ">
@@ -571,14 +377,43 @@ export default async function SubdomainPage({ params }: SubdomainPageProps) {
               <div className="mx-10 mt-4 flex h-fit w-auto flex-wrap justify-center gap-4">
                 {ContentData?.neighbourhoods?.split("|").map((item: any) => (
                   <div className="" key={item}>
+                    <a
+                      target="_blank"
+                      href={`https://www.google.com/maps/search/?api=1&query=${item}, ${ContentData?.slug},`}
+                    >
+                      <p className="border bg-minor px-2 py-1 text-white duration-100 ease-in-out hover:text-main">
+                        {item}
+                      </p>
+                    </a>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        ) : null}
+        {/* Neighborhood */}
+        {/* Zip */}
+        {ContentData?.zipCodes ? (
+          <div className="">
+            <div className="block border px-4 md:hidden">
+              <ZipAndNeighAccordian
+                ques={` Zip Codes we serve in ${ContentData?.name}`}
+                ans={ContentData?.zipCodes?.split("|")}
+                slug={ContentData?.slug}
+              />
+            </div>
+            <div className="mt-28 hidden items-center justify-start md:mx-40 md:block  ">
+              <div className="text-center text-3xl font-bold">
+                <p className="text-main">
+                  Zip&nbsp;Codes we serve in {ContentData?.name}
+                </p>
+              </div>
+              <div className="mx-10 mt-4 flex h-fit w-auto flex-wrap justify-center gap-4">
+                {ContentData?.zipCodes?.split("|").map((item: any) => (
+                  <div className="" key={item}>
                     <Link
-                      href={`/${
-                        item
-                          .trim()
-                          .toLowerCase()
-                          .replace(/\.+$/, "") // remove trailing dots
-                          .replace(/\s+/g, "-") // replace spaces with hyphens
-                      }`}
+                      target="_blank"
+                      href={`https://www.google.com/maps/search/?api=1&query=${item}, ${ContentData?.slug},`}
                     >
                       <p className="border bg-minor px-2 py-1 text-white duration-100 ease-in-out hover:text-main">
                         {item}
@@ -590,43 +425,9 @@ export default async function SubdomainPage({ params }: SubdomainPageProps) {
             </div>
           </div>
         ) : null}
-      {/* Neighborhood */}
-      {/* Zip */}
-      {ContentData?.zipCodes ? (
-        <div className="">
-          <div className="block border px-4 md:hidden">
-            <ZipAndNeighAccordian
-              ques={` Zip Codes we serve in ${ContentData?.name}`}
-              ans={ContentData?.zipCodes?.split("|")}
-              slug={ContentData?.slug}
-            />
-          </div>
-          <div className="mt-28 hidden items-center justify-start md:mx-40 md:block  ">
-            <div className="text-center text-3xl font-bold">
-              <p className="text-main">
-                Zip&nbsp;Codes we serve in {ContentData?.name}
-              </p>
-            </div>
-            <div className="mx-10 mt-4 flex h-fit w-auto flex-wrap justify-center gap-4">
-              {ContentData?.zipCodes?.split("|").map((item: any) => (
-                <div className="" key={item}>
-                  <Link
-                    target="_blank"
-                    href={`https://www.google.com/maps/search/?api=1&query=${item}, ${ContentData?.slug},`}
-                  >
-                    <p className="border bg-minor px-2 py-1 text-white duration-100 ease-in-out hover:text-main">
-                      {item}
-                    </p>
-                  </Link>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      ) : null}
-      {/* Zip */}
+        {/* Zip */}
         {/* FAQ */}
-        {ContentData?.faq ? <Faq data={ContentData?.faq} value={`${ContentData.name}, ${abbrevations.toUpperCase()}`}/> : null}
+        {ContentData?.faq ? <Faq value={State} /> : null}
         {/* FAQ */}
         {/* CounterCta */}
         {/* CounterCta */}
@@ -651,28 +452,10 @@ export default async function SubdomainPage({ params }: SubdomainPageProps) {
   );
 }
 
-export async function generateStaticParams() {
-  let content: any = {};
-  try {
-    const data = await getSubdomainData();
-    if (data && data.subdomains) {
-      // Convert array back to object with slug as key
-      content = data.subdomains.reduce((acc: any, item: any) => {
-        if (item.slug) {
-          acc[item.slug] = item;
-        }
-        return acc;
-      }, {});
-    }
-  } catch (e) {
-    // Fallback to static content if API fails
-    content = subdomainContent.subdomainData;
-  }
-
+export function generateStaticParams() {
   const cityData: any = content;
   const subDomain = Object.keys(cityData);
   return subDomain.map((locations: any) => ({
     State: locations.toString(),
   }));
 }
-
