@@ -10,17 +10,17 @@
 {
       "brandName": "Kleanr",
       "brandLink": "https://kleanr.com/",
-      "brandDescription": "At Kleanr, we bring decades of trusted plumbing experience to every job, backed by licensed, bonded, and insured professionals who treat each service call with care and precision. Since 1983, we’ve focused on practical solutions you can count on, from fixing leaks and clearing drains to installing water heaters and handling full system needs. We maintain open and honest communication while delivering dependable workmanship to help keep your plumbing running smoothly. With a commitment to quality and customer satisfaction, we aim to make every experience reliable and stress-free for homeowners and businesses alike."
+      "brandDescription": "At <a href='https://kleanr.com/' target='_blank' style='color: blue; text-decoration: underline;' rel='noopener noreferrer'>Kleanr</a>, we bring decades of trusted plumbing experience to every job, backed by licensed, bonded, and insured professionals who treat each service call with care and precision. Since 1983, we’ve focused on practical solutions you can count on, from fixing leaks and clearing drains to installing water heaters and handling full system needs. We maintain open and honest communication while delivering dependable workmanship to help keep your plumbing running smoothly. With a commitment to quality and customer satisfaction, we aim to make every experience reliable and stress-free for homeowners and businesses alike."
     },
     {
       "brandName": "Ben Franklin Plumbing",
       "brandLink": "https://benfranklinplumbersct.com/",
-      "brandDescription": "At Ben Franklin Plumbing, we’re committed to reliable, professional plumbing service with clear communication and results you can trust. We show up on time, explain what’s happening, and use modern tools and techniques to fix everything from routine repairs to complex plumbing challenges. Our team stands behind our work with strong satisfaction guarantees and honest pricing, creating an experience that’s straightforward and reassuring from first call to completion."
+      "brandDescription": "At <a href='https://benfranklinplumbersct.com/' target='_blank' style='color: blue; text-decoration: underline;' rel='noopener noreferrer'>Ben Franklin Plumbing</a>, we’re committed to reliable, professional plumbing service with clear communication and results you can trust. We show up on time, explain what’s happening, and use modern tools and techniques to fix everything from routine repairs to complex plumbing challenges. Our team stands behind our work with strong satisfaction guarantees and honest pricing, creating an experience that’s straightforward and reassuring from first call to completion."
     },
     {
       "brandName": "Cardinal Plumbing Solutions",
       "brandLink": "https://cardinalplumbingsolutions.com/",
-      "brandDescription": "At Cardinal Plumbing Solutions, we focus on dependable service and clear communication from the first call to the finished job. Our team listens closely to your concerns, explains the best options in plain language, and delivers quality workmanship you can count on. With honest pricing and a commitment to doing things right, we aim to make every plumbing experience smooth, stress-free, and reassuring for every customer."
+      "brandDescription": "At <a href='https://cardinalplumbingsolutions.com/' target='_blank' style='color: blue; text-decoration: underline;' rel='noopener noreferrer'>Cardinal Plumbing Solutions</a>, we focus on dependable service and clear communication from the first call to the finished job. Our team listens closely to your concerns, explains the best options in plain language, and delivers quality workmanship you can count on. With honest pricing and a commitment to doing things right, we aim to make every plumbing experience smooth, stress-free, and reassuring for every customer."
     }
       ]
 }
