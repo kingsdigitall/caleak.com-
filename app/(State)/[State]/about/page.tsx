@@ -16,6 +16,7 @@ interface AboutProps {
 }
 
 export function generateMetadata({ params }: { params: { services: string } }) {
+  try {({ params }: { params: { services: string } }) {
   const headersList = headers();
   const subdomain = headersList.get("x-subdomain") as
     | keyof typeof content
@@ -42,7 +43,13 @@ export function generateMetadata({ params }: { params: { services: string } }) {
     alternates: {
       canonical: `https://${Data.slug}.${ContactInfo.host}/about`,
     },
-  };
+  } catch (error) {
+    return {
+      title: "Service Information",
+      description: "Professional service information.",
+    };
+  }
+};
 }
 
 const Page = async () => {

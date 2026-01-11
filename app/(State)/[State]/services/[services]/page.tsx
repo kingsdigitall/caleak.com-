@@ -10,7 +10,8 @@ import CtaSimple from "@/app/components/CtaSimple";
 import NavbarState from "@/app/components/State/NavbarState";
 
 export function generateMetadata({ params }: { params: { services: string } }) {
-  const serviceData: any = Servicedata.lists.find(
+  try {({ params }: { params: { services: string } }) {
+  const serviceData: any = Servicedata?.lists?.find.lists.find(
     (service) => service.slug === params.services,
   );
   const headersList = headers();
@@ -26,11 +27,17 @@ export function generateMetadata({ params }: { params: { services: string } }) {
     alternates: {
       canonical: `https://${ContactInfo.host}/services/${params.services}`,
     },
-  };
+  } catch (error) {
+    return {
+      title: "Service Information",
+      description: "Professional service information.",
+    };
+  }
+};
 }
 
 const page = ({ params }: { params: { services: string } }) => {
-  const serviceData: any = Servicedata.lists.find(
+  const serviceData: any = Servicedata?.lists?.find.lists.find(
     (service) => service.slug === params.services,
   );
   const headersList = headers();
