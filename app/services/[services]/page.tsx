@@ -1,58 +1,96 @@
 import Banner from "@/app/components/Home/Banner";
 import React from "react";
-import Servicedata from "@/components/Content/serviceWidgetContent.json";
 import Image from "next/image";
 import Service from "@/app/components/Home/Service";
 import { headers } from "next/headers";
-import content from "@/components/Content/subDomainUrlContent.json";
-import ContactInfo from "@/components/Content/ContactInfo.json";
 import CtaSimple from "@/app/components/CtaSimple";
 import Navbar from "@/app/components/Navbar";
 
+import contactContent from "@/app/Data/content";
+import subdomainContent from "@/app/Data/FinalContent";
+
+export const dynamicParams = false;
+
+const ContactInfo: any = contactContent.contactContent;
+const data: any = contactContent.servicePageContent;
+const content: any = subdomainContent.subdomainData;
+const Servicedata = data?.serviceData;
+
 export function generateMetadata({ params }: { params: { services: string } }) {
-  try {({ params }: { params: { services: string } }) {
-  const serviceData: any = Servicedata?.lists?.find.lists.find(
-    (service) => service.slug === params.services,
-  );
-  const headersList = headers();
-  const subdomain = headersList.get("x-subdomain");
-  const Data: any = content[subdomain as keyof typeof content];
-  return {
-    title: serviceData.title
-      .split("[location]")
-      .join(Data?.name || "California"),
-    description: serviceData.description
-      .split("[location]")
-      .join(Data?.name || "California"),
-    alternates: {
-      canonical: `https://${ContactInfo.host}/services/${params.services}`,
-    },
+  try {
+    const serviceData: any = Servicedata?.lists?.find(
+      (service: any) => service.slug === params.services,
+    );
+
+    if (!serviceData) {
+      return {
+        title: "Service Information",
+        description: "Professional service information.",
+      };
+    }
+
+    return {
+      title: serviceData.title
+        ?.split("[location]")
+        .join(ContactInfo.location)
+        ?.split("[phone]")
+        .join(ContactInfo.No),
+      description: serviceData.description
+        ?.split("[location]")
+        .join(ContactInfo.location)
+        ?.split("[phone]")
+        .join(ContactInfo.No),
+      alternates: {
+        canonical: `https://${ContactInfo.host}/services/${params.services}/`,
+      },
+    };
   } catch (error) {
     return {
       title: "Service Information",
       description: "Professional service information.",
     };
   }
-};
 }
 
 const page = ({ params }: { params: { services: string } }) => {
-  const serviceData: any = Servicedata?.lists?.find.lists.find(
-    (service) => service.slug === params.services,
+  const serviceData: any = Servicedata?.lists?.find(
+    (service: any) => service.slug === params.services,
   );
   const headersList = headers();
   const subdomain = headersList.get("x-subdomain");
-  const Data: any = content[subdomain as keyof typeof content];
-  const locationName = Data?.name || "California";
+  const Data: any = content?.[subdomain as keyof typeof content];
+  const locationName = ContactInfo.location;
+
+  if (!serviceData) {
+    return (
+      <div className="">
+        <Navbar />
+        <div className="flex min-h-screen items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-2xl font-bold">Service Not Found</h1>
+            <p>The requested service could not be found.</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="">
       <Navbar />
       <div className="">
         <Banner
-          h1={serviceData.title.split("[location]").join(locationName)}
-          image={"banner.jpg"}
+          h1={serviceData.title
+            ?.split("[location]")
+            .join(ContactInfo.location)
+            ?.split("[phone]")
+            .join(ContactInfo.No)}
           header=""
-          p1={serviceData.description.split("[location]").join(locationName)}
+          p1={serviceData.description
+            ?.split("[location]")
+            .join(ContactInfo.location)
+            ?.split("[phone]")
+            .join(ContactInfo.No)}
         />
         <div className="mx-4 mt-6 print:hidden md:mx-10">
           {/* who */}
@@ -61,22 +99,28 @@ const page = ({ params }: { params: { services: string } }) => {
               <div className="text-3xl font-bold">
                 <h2>
                   {" "}
-                  {serviceData.title.split("[location]").join(locationName)}
+                  {serviceData.title?.split("[location]").join(locationName)}
                 </h2>
                 <br />
               </div>
               <div
                 className="text-justify "
                 dangerouslySetInnerHTML={{
-                  __html: serviceData.p2.split("[location]").join(locationName),
+                  __html: serviceData.p2
+                    ?.split("[location]")
+                    .join(ContactInfo.location)
+                    ?.split("[phone]")
+                    .join(ContactInfo.No),
                 }}
               ></div>
             </div>
             <div className="w-full pt-10">
               <Image
-                src={`/roof-leaking-in-living-room.jpg`}
+                src={serviceData.imageUrl || "/placeholder.jpg"}
                 className="h-80 rounded-lg border object-cover shadow-lg"
-                alt="roof-leaking-in-living-room"
+                alt={
+                  serviceData.title?.split("/").pop()?.split(".")[0] || "image"
+                }
                 width={1000}
                 height={1000}
               />
@@ -84,30 +128,24 @@ const page = ({ params }: { params: { services: string } }) => {
           </div>
           {/* who */}
         </div>
-        {/* <div className="mx-auto my-4 w-80 border p-4">
-          <div dangerouslySetInnerHTML={{ __html: serviceData.description }} />
-        </div> */}
-        <div className="my-20 bg-main text-white">
-          <div className="text- mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-            <h2 className=" text-center text-3xl font-bold">
-              {serviceData.h3.split("[location]").join(locationName)}
-            </h2>
-            <div
-              className="mt-4 flex flex-wrap justify-center gap-4"
-              // dangerouslySetInnerHTML={{
-              //   __html: serviceData.p3
-              //     .split("[location]")
-              //     .join(locationName),
-              // }}
-            >
-              {serviceData.p3.split("|").map((Item: string) => (
-                <p key={Item} className="m-2  rounded-md border  p-4 font-bold">
-                  {Item}
-                </p>
-              ))}
+        {serviceData.h3 && (
+          <div className="my-20 bg-main text-white">
+            <div className="text- mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+              <h2 className=" text-center text-3xl font-bold">
+                {serviceData.h3?.split("[location]").join(locationName)}
+              </h2>
+              {serviceData.p3 && (
+                <div className="mt-4 flex flex-wrap justify-center gap-4">
+                  {serviceData.p3.split("|").map((Item: string) => (
+                    <p key={Item} className="m-2  rounded-md border  p-4 font-bold">
+                      {Item}
+                    </p>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
-        </div>
+        )}
 
         <Service value={subdomain} />
         <div className="my-20">
@@ -120,14 +158,15 @@ const page = ({ params }: { params: { services: string } }) => {
                 className="mt-4 "
                 dangerouslySetInnerHTML={{
                   __html: serviceData.seoContent
-                    .split("[location]")
-                    .join(locationName),
+                    ?.split("[location]")
+                    .join(ContactInfo.location)
+                    ?.split("[phone]")
+                    .join(ContactInfo.No),
                 }}
               ></div>
             </div>
           </div>
         )}
-        {/* <TypeOfDumpster /> */}
       </div>
     </div>
   );
@@ -135,9 +174,10 @@ const page = ({ params }: { params: { services: string } }) => {
 
 export default page;
 
+
 export function generateStaticParams() {
-  const cityData: any = Servicedata.lists;
+  const cityData: any = Servicedata?.lists || [];
   return cityData.map((locations: any) => ({
-    services: locations.slug.toString(),
+    services: locations.slug?.toString() || "",
   }));
 }

@@ -5,12 +5,12 @@ import { FaPhoneVolume } from "react-icons/fa";
 import ContactInfo from "@/components/Content/ContactInfo.json";
 
 const Banner = ({
-  image,
+  image = "banner.jpg",
   header,
   p1,
   h1,
 }: {
-  image: string;
+  image?: string;
   header: string;
   p1: string;
   h1: string;

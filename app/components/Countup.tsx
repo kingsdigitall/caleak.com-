@@ -11,35 +11,47 @@ const CountUp: React.FC<CountUpProps> = ({ start = 0, end }) => {
   const ref = useRef<HTMLDivElement>(null);
   const counter = (end - start) / 200;
   
-  const startRef = useRef(start); // Store the mutable value of 'start' using useRef
+  const startRef = useRef(start);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const isCompleteRef = useRef(false);
 
   const Count = useCallback(() => {
-    let currentStart = startRef.current; // Access the current value of 'start' from the ref
+    // Stop if already complete
+    if (isCompleteRef.current) return;
+    
+    let currentStart = startRef.current;
     if (ref.current && ref.current.getBoundingClientRect().top < window.innerHeight) {
       const result: number = Math.ceil(currentStart + counter);
-      if (result > end) return setValue(end);
+      if (result >= end) {
+        setValue(end);
+        isCompleteRef.current = true;
+        return; // Stop the loop when complete
+      }
       setValue(result);
-      currentStart = result;  // Update the start value for the next iteration
-      startRef.current = currentStart; // Update the value stored in the ref
+      startRef.current = result;
     }
-    setTimeout(Count, 70);
-  }, [counter, end]); // 'startRef' does not need to be in the dependencies
+    // Only schedule next tick if not complete
+    if (!isCompleteRef.current) {
+      timeoutRef.current = setTimeout(Count, 70);
+    }
+  }, [counter, end]);
 
   useEffect(() => {
-    let isMounted = true;
-
     const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
+      if (entries[0].isIntersecting && !isCompleteRef.current) {
         Count();
       }
-    },);
+    });
 
     if (ref.current) {
       observer.observe(ref.current);
     }
 
     return () => {
-      isMounted = false;
+      // Clean up timeout on unmount
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
       observer.disconnect();
     };
   }, [Count]);
