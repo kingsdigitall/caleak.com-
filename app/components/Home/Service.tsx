@@ -43,11 +43,11 @@ const StateName = contentData?.name ? (abbrevation ? `${contentData.name}, ${abb
               <div className="h-14 w-14 overflow-hidden rounded-full object-cover md:h-full md:w-full md:rounded-none">
                 <Image
                   aria-hidden="true"
-                  src={`/${items.imageUrl}`}
+                  src={items.imageUrl.startsWith('/') ? items.imageUrl : `/${items.imageUrl}`}
                   alt={
-                    items.imageUrl.split(".")[0] || "image"
+                    items.imageUrl.split("/").pop()?.split(".")[0] || "image"
                   }
-                  title={items.imageUrl.split(".")[0] || "image"}
+                  title={items.imageUrl.split("/").pop()?.split(".")[0] || "image"}
                   width="900"
                   height="550"
                   className="h-14 w-14 object-cover md:h-full md:w-full "

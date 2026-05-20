@@ -375,7 +375,7 @@ function ensureServiceDataLists(serviceData: any): any {
   const ensuredLists =
     Array.isArray(serviceData.lists) && serviceData.lists.length > 0
       ? serviceData.lists.map((item: any, index: number) => {
-          const localImageList = localImages.servicePage.lists?.[String(index) as keyof typeof localImages.servicePage.lists];
+          const localImageList = safeLocalImages.servicePage?.lists?.[String(index)];
           return {
             title: getValueOrDefault(
               item?.title,
@@ -416,7 +416,7 @@ function ensureServiceDataLists(serviceData: any): any {
               defaultServiceData.lists[index]?.slug || "default-service",
             ),
             imageUrl: getValueOrDefault(
-              localImageList && 'imageUrl' in localImageList ? `/servicePage/${localImageList.imageUrl}` : undefined,
+              localImageList?.imageUrl ? `/servicePage/${localImageList.imageUrl}` : undefined,
               item?.imageUrl ||
                 defaultServiceData.lists[index]?.imageUrl ||
                 "https://ik.imagekit.io/h7rza8886p/Default1.jpg?updatedAt=1757319001930",
@@ -562,14 +562,14 @@ const contactContent: any = {
   ),
   zipCode: getValueOrDefault(contactDataJson?.zipCode, "DEFAULT: 12345"),
   bannerImage: getValueOrDefault(
-    `/ContactInfo/${localImages.ContactInfo.bannerImage}`,
+    safeLocalImages.ContactInfo?.bannerImage ? `/ContactInfo/${safeLocalImages.ContactInfo.bannerImage}` : undefined,
     "https://ik.imagekit.io/h7rza8886p/Default1.jpg?updatedAt=1757319001930",
   ),
   logoImage: getValueOrDefault(
-    `/ContactInfo/${localImages.ContactInfo.logoImage}`,
+    (safeLocalImages.ContactInfo as any)?.logoImage ? `/ContactInfo/${(safeLocalImages.ContactInfo as any).logoImage}` : undefined,
     "https://ik.imagekit.io/h7rza8886p/Default1.jpg?updatedAt=1757319001930",
   ),
-  favicon: getValueOrDefault((localImages.ContactInfo as any)?.favicon ? `/ContactInfo/${(localImages.ContactInfo as any).favicon}` : undefined, "DEFAULT: /favicon.ico"),
+  favicon: getValueOrDefault((safeLocalImages.ContactInfo as any)?.favicon ? `/ContactInfo/${(safeLocalImages.ContactInfo as any).favicon}` : undefined, "DEFAULT: /favicon.ico"),
   googleAnalytics: getValueOrDefault(
     contactDataJson?.googleAnalytics,
     "DEFAULT: GA_MEASUREMENT_ID",
@@ -606,7 +606,7 @@ const aboutContent: any = {
     "DEFAULT: Your Trusted Partner for Water Damage Restoration Solutions",
   ),
   bannerImage: getValueOrDefault(
-    `/about/${localImages.about.bannerImage}`,
+    safeLocalImages.about?.bannerImage ? `/about/${safeLocalImages.about.bannerImage}` : undefined,
     "https://ik.imagekit.io/h7rza8886p/Default1.jpg?updatedAt=1757319001930",
   ),
   h1Banner: getValueOrDefault(
@@ -622,7 +622,7 @@ const aboutContent: any = {
     "DEFAULT: We provide professional water damage restoration in [location] for homeowners, businesses, and property managers. Whether you're dealing with flood damage, burst pipes, storm damage, or sewage backups, our certified technicians are ready to provide fast, effective restoration services. From water extraction and structural drying to mold remediation and full reconstruction, we handle every aspect of water damage recovery. With 24/7 emergency response, advanced equipment, and direct insurance billing, our service is trusted by customers who need fast and reliable solutions for water damage emergencies.",
   ),
   h2Image: getValueOrDefault(
-    `/about/${localImages.about.h2Image}`,
+    safeLocalImages.about?.h2Image ? `/about/${safeLocalImages.about.h2Image}` : undefined,
     "https://ik.imagekit.io/h7rza8886p/Default1.jpg?updatedAt=1757319001930",
   ),
   missionSection: ensureMissionSection(missionSection),
@@ -691,7 +691,7 @@ const contactPageContent: any = {
     "DEFAULT: Emergency Water Damage? Contact Us Now!",
   ),
   bannerImage: getValueOrDefault(
-    `/contact/${localImages.contact.bannerImage}`,
+    safeLocalImages.contact?.bannerImage ? `/contact/${safeLocalImages.contact.bannerImage}` : undefined,
     "https://ik.imagekit.io/h7rza8886p/Default1.jpg?updatedAt=1757319001930",
   ),
   h1Banner: getValueOrDefault(
@@ -704,7 +704,7 @@ const contactPageContent: any = {
   ),
   h2: getValueOrDefault(h2, "DEFAULT: Get Your Free Water Damage Assessment"),
   h2Image: getValueOrDefault(
-    `/contact/${localImages.contact.h2Image}`,
+    safeLocalImages.contact?.h2Image ? `/contact/${safeLocalImages.contact.h2Image}` : undefined,
     "https://ik.imagekit.io/h7rza8886p/Default1.jpg?updatedAt=1757319001930",
   ),
   p2: getValueOrDefault(
@@ -868,7 +868,7 @@ const homePageContent: any = {
     "DEFAULT: Fast, Professional, Reliable",
   ),
   bannerImage: getValueOrDefault(
-    `/home/${localImages.home.bannerImage}`,
+    safeLocalImages.home?.bannerImage ? `/home/${safeLocalImages.home.bannerImage}` : undefined,
     "https://ik.imagekit.io/h7rza8886p/Default1.jpg?updatedAt=1757319001930",
   ),
   h1Banner: getValueOrDefault(
@@ -888,7 +888,7 @@ const homePageContent: any = {
     "DEFAULT: We provide the fastest, most reliable water damage restoration service in [location] with certified technicians and comprehensive restoration solutions.",
   ),
   h2Image: getValueOrDefault(
-    `/home/${localImages.home.h2Image}`,
+    safeLocalImages.home?.h2Image ? `/home/${safeLocalImages.home.h2Image}` : undefined,
     "https://ik.imagekit.io/h7rza8886p/Default1.jpg?updatedAt=1757319001930",
   ),
   h3: getValueOrDefault(
@@ -900,7 +900,7 @@ const homePageContent: any = {
     "DEFAULT: From flood damage to burst pipes, we have the expertise and equipment to restore your property quickly and efficiently in [location].",
   ),
   h3Image: getValueOrDefault(
-    `/home/${localImages.home.h3Image}`,
+    safeLocalImages.home?.h3Image ? `/home/${safeLocalImages.home.h3Image}` : undefined,
     "https://ik.imagekit.io/h7rza8886p/Default1.jpg?updatedAt=1757319001930",
   ),
   mapLink: getValueOrDefault(
@@ -1127,7 +1127,7 @@ const locationPageContent: any = {
     "DEFAULT: Serving [location] and Surrounding Areas",
   ),
   bannerImage: getValueOrDefault(
-    `/location/${localImages.location.bannerImage}`,
+    safeLocalImages.location?.bannerImage ? `/location/${safeLocalImages.location.bannerImage}` : undefined,
     "https://ik.imagekit.io/h7rza8886p/Default1.jpg?updatedAt=1757319001930",
   ),
   h1Banner: getValueOrDefault(
@@ -1209,7 +1209,7 @@ const brandsContent: any = {
     "DEFAULT: Learn about our trusted water damage restoration partners and equipment. We use only the highest quality restoration equipment for reliable service in [location].",
   ),
   bannerImage: getValueOrDefault(
-     `/ourBrand/${localImages.ourBrand.bannerImage}`,
+    safeLocalImages.ourBrand?.bannerImage ? `/ourBrand/${safeLocalImages.ourBrand.bannerImage}` : undefined,
     "https://ik.imagekit.io/h7rza8886p/Default1.jpg?updatedAt=1757319001930",
   ),
   h1Banner: getValueOrDefault(
@@ -1222,7 +1222,7 @@ const brandsContent: any = {
     "DEFAULT: We partner with the most reliable suppliers in the industry to ensure you get quality restoration equipment and professional service every time in [location].",
   ),
   h2Image: getValueOrDefault(
-    `/ourBrand/${localImages.ourBrand.h2Image}`,
+    safeLocalImages.ourBrand?.h2Image ? `/ourBrand/${safeLocalImages.ourBrand.h2Image}` : undefined,
     "https://ik.imagekit.io/h7rza8886p/Default1.jpg?updatedAt=1757319001930",
   ),
   brandslist: (() => {
@@ -1336,7 +1336,7 @@ const servicePageContent: any = {
     "DEFAULT: Professional Water Damage Restoration Services",
   ),
   bannerImage: getValueOrDefault(
-    `/servicePage/${localImages.servicePage.bannerImage}`,
+    safeLocalImages.servicePage?.bannerImage ? `/servicePage/${safeLocalImages.servicePage.bannerImage}` : undefined,
     "https://ik.imagekit.io/h7rza8886p/Default1.jpg?updatedAt=1757319001930",
   ),
   h1Banner: getValueOrDefault(

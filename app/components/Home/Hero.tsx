@@ -64,10 +64,10 @@ const Hero = () => {
                 height={10000}
                 width={10000}
                 unoptimized={true}
-                src={`/${homeData.h2Image}`}
+                src={`/${homeData.h3Image}`}
                 className=" h-full w-full rounded-lg object-cover shadow-lg"
-                alt={homeData.h2Image.split(".")[0]}
-                title={homeData.h2Image.split(".")[0]}
+                alt={homeData.h3Image.split(".")[0]}
+                title={homeData.h3Image.split(".")[0]}
               />
             </div>
             <div className="flex flex-col justify-center    ">

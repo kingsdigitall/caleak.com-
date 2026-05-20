@@ -59,9 +59,9 @@ const ServiceSlider = () => {
                 <div className="w-14 h-14 object-cover overflow-hidden rounded-full">
                 <Image
                 aria-hidden="true"
-                src={`/${item.imageUrl}`}
-                alt={`${item.imageUrl.split(".")}`}
-                title={`${item.imageUrl.split(".")}`}
+                src={item.imageUrl.startsWith('/') ? item.imageUrl : `/${item.imageUrl}`}
+                alt={item.imageUrl.split("/").pop()?.split(".")[0] || "image"}
+                title={item.imageUrl.split("/").pop()?.split(".")[0] || "image"}
                 width="900"
                 height="550"
                 className="object-cover w-14 h-14 "

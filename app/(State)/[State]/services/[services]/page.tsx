@@ -140,8 +140,19 @@ const page = ({ params }: { params: { services: string } }) => {
 export default page;
 
 export function generateStaticParams() {
-  const cityData: any = Servicedata.lists;
-  return cityData.map((locations: any) => ({
-    services: locations.slug.toString(),
-  }));
+  const states = Object.keys(content);
+  const services = Servicedata?.lists || [];
+  
+  const params: { State: string; services: string }[] = [];
+  
+  for (const state of states) {
+    for (const service of services) {
+      params.push({
+        State: state,
+        services: service.slug.toString(),
+      });
+    }
+  }
+  
+  return params;
 }
