@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
+import { FaStar } from "react-icons/fa";
 import Testimonials from "@/components/Content/Reviews.json";
 import content from "@/components/Content/subDomainUrlContent.json";
 
@@ -82,14 +83,10 @@ const ReviewWidget: React.FC<ReviewWidgetProps> = ({ value = "" }) => {
             className="relative mb-10 p-5 lg:h-80 lg:bg-main lg:text-white"
             key={index} // Use a unique identifier for the key
           >
-            <div className="flex items-center justify-center">
-              <Image
-                src="/5Star.png"
-                alt="review"
-                width={1000}
-                height={500}
-                className="w-40"
-              />
+            <div className="flex items-center justify-center gap-1">
+              {[1, 2, 3, 4, 5].map((s) => (
+                <FaStar key={s} className="text-2xl text-yellow-400" />
+              ))}
             </div>
             <div className="mt-4">
               {item.Review.split("[location]").join(StateName)}
